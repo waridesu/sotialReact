@@ -1,0 +1,33 @@
+aside {
+    position: relative;
+    width: 210px;
+    margin: 10px 7px;
+    margin-right: 0;
+
+}
+aside img {
+    position: absolute;
+    top: 25px;
+    left: 50px;
+    width: 100px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px #fff;
+}
+
+aside div {
+    height: 70px;
+    text-align: center;
+}
+aside div:first-child {
+    background-color: #D9CCEC;
+}
+aside p {
+    margin: 0;
+}
+.about p:first-child,
+span {
+    font-weight: 600;
+}
+.button {
+    height: 31px;
+}

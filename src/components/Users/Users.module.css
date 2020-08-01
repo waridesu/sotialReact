@@ -1,0 +1,52 @@
+.users_profile {
+    display: flex;
+    padding: 5px;
+}
+.subscriber {
+    align-self: center;
+    padding-right: 5px;
+}
+.subscriber button{
+    display: block;
+    background-color: #D9CCEC;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    margin-top: 5px;
+    width: 69px;
+}
+.subscriber img {
+    width: 45px;
+    height: 45px;
+    display: block;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 2px #fff;
+}
+.users_profile__info {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+.users_profile__name {
+    margin-left: 10px;
+}
+.users_profile__location {
+    margin-right: 10px;
+    text-align: center;
+}
+.users_pages {
+    display: flex;
+    justify-content: space-evenly;
+}
+.users_pages button {
+    background-color: unset;
+    border-radius: 30%;
+    padding: 0;
+    width: 20px;
+    border:1px solid #808080;
+}
+.selectedPage {
+    font-weight: 900;
+}

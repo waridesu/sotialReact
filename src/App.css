@@ -1,0 +1,52 @@
+.page_conteiner {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+.content_conteiner {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #D9CCEC;
+  margin: 10px;
+}
+.Start {
+  display: flex;
+}
+
+.Start li {
+  list-style: none;
+}
+
+.Start ul {
+  margin: 0;
+  margin-left: 10px;
+  padding: 0;
+}
+
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
