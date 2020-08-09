@@ -1,10 +1,3 @@
-const follow = 'follow';
-const unfollow = 'unfollow';
-const setUsers = 'setUsers';
-const setCurrentPage = 'setCurrentPage';
-const setTotalUsersCount = 'setTotalUsersCount';
-const toggleIsFetching = 'toggleIsFetching';
-
 let initialState = {
     users: [/*
         
@@ -56,7 +49,7 @@ const usersReducer = (state = initialState, action) => {
         case setTotalUsersCount:
             return { ...state, totalUsersCount: action.totalUsersCount }
 
-            case toggleIsFetching:
+            case setToggleIsFetching:
                 return { ...state, isFetching: action.isFetching }
 
         default:
@@ -64,11 +57,11 @@ const usersReducer = (state = initialState, action) => {
     }
 }
 
-export const followAC = (userId) => ({ type: follow, userId })
-export const unfollowAC = (userId) => ({ type: unfollow, userId })
-export const setUsersAC = (users) => ({ type: setUsers, users })
-export const setCurrentPageAC = (currentPage) => ({ type: setCurrentPage, currentPage })
-export const setTotalUsersCountAC = (totalUsersCount) => ({ type: setTotalUsersCount, totalUsersCount })
-export const setToggleIsFetchingAC = (isFetching) => ({ type: toggleIsFetching, isFetching })
+export const follow = (userId) => ({ type: follow, userId })
+export const unfollow = (userId) => ({ type: unfollow, userId })
+export const setUsers = (users) => ({ type: setUsers, users })
+export const setCurrentPage = (currentPage) => ({ type: setCurrentPage, currentPage })
+export const setTotalUsersCount = (totalUsersCount) => ({ type: setTotalUsersCount, totalUsersCount })
+export const setToggleIsFetching = (isFetching) => ({ type: setToggleIsFetching, isFetching })
 
 export default usersReducer;

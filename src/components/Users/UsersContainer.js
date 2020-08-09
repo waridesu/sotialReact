@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC, setToggleIsFetchingAC } from '../../redux/usersReducer';
+import { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setToggleIsFetching } from '../../redux/usersReducer';
 import Users from './Users';
 import * as axios from 'axios'
+import Preloader from '../Preloader/Preloader';
 
 class UsersApi extends React.Component {
     componentDidMount() {
-        this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-            this.props.toggleIsFetching(false);
+        this.props.setToggleIsFetching(true);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true}).then(response => {
+            this.props.setToggleIsFetching(false);
             this.props.setUsers(response.data.items/*[        
                 { id: 0, avatarUrl: 'https://via.placeholder.com/40', followed: true, Name: 'Liam', status: 'some  status', location: { city: 'Moscow', country: 'Russia' } },
                 { id: 1, avatarUrl: 'https://via.placeholder.com/40', followed: false, Name: 'Masone', status: 'some  status', location: { city: 'Kiev', country: 'Ukraine' } },
@@ -24,9 +25,9 @@ class UsersApi extends React.Component {
     }
     onPageChanged = (p) => {
         this.props.setCurrentPage(p)
-        this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`).then(response => {
-            this.props.toggleIsFetching(false);
+        this.props.setToggleIsFetching(true);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`, {withCredentials: true}).then(response => {
+            this.props.setToggleIsFetching(false);
             this.props.setUsers(response.data.items);
 
         });
@@ -35,7 +36,7 @@ class UsersApi extends React.Component {
 
     render() {
         return <>
-            {this.props.isFetching ? <img src='https://thumbs.gfycat.com/PastelOnlyDarklingbeetle-size_restricted.gif' alt="preloader"/> : 
+            {this.props.isFetching ? <Preloader/> : 
             <Users users={this.props.users}
                 pageSize={this.props.pageSize}
                 totalUsersCount={this.props.totalUsersCount}
@@ -57,28 +58,13 @@ let mapStateToProps = (state) => {
         isFetching: state.usersPage.isFetching
     }
 }
-let mapDispathToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            dispatch(followAC(userId))
-        },
-        unfollow: (userId) => {
-            dispatch(unfollowAC(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (nuberPage) => {
-            dispatch(setCurrentPageAC(nuberPage))
-        },
-        setTotalUsersCount: (totalCount) => {
-            dispatch(setTotalUsersCountAC(totalCount))
-        },
-        toggleIsFetching: (isFetching) => {
-            dispatch(setToggleIsFetchingAC(isFetching))
-        }
-    }
-}
 
-const UsersContainer = connect(mapStateToProps, mapDispathToProps)(UsersApi)
+const UsersContainer = connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    setToggleIsFetching
+})(UsersApi)
 export default UsersContainer;

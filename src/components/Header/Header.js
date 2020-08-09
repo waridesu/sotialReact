@@ -5,7 +5,7 @@ import s from './Header.module.css'
 import { NavLink } from 'react-router-dom';
 
 
-const Header = () =>
+const Header = (props) =>
   <header>
     <div className={s.header_container}>
       <img className={s.header_logo} src={logo} alt="logo" width="40" height="40" />
@@ -16,12 +16,13 @@ const Header = () =>
       <nav>
         <NavLink to="/blan" activeClassName={s.active}>Home</NavLink>
         <NavLink to="/blak" activeClassName={s.active}>News</NavLink>
+        <NavLink to="/profile" activeClassName={s.active}>Profile</NavLink>
         <NavLink to="/users" activeClassName={s.active}>Users</NavLink>
         <NavLink to="/dialogs" activeClassName={s.active}>Massages</NavLink>
       </nav>
       <div className={s.heder_profile}>
         <img src={avatar} height="40" width="40" alt=""/>
-        <NavLink to="_bank" exact activeClassName={s.active}>Denis</NavLink>
+  {props.isAuth ? props.login:<NavLink to={'/login'} exact activeClassName={s.active}>Login</NavLink>}
         <button type="button" />
       </div>
     </div>
