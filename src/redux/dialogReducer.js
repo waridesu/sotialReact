@@ -1,5 +1,5 @@
-const addMassage = 'ADD_MASSAGE';
-const updateNewMassageText = 'UPDATE_NEW_MASSAGE_TEXT';
+const add_Massage = 'ADD_MASSAGE';
+const update_NewMassage_Text = 'UPDATE_NEW_MASSAGE_TEXT';
 
 let initialState = {
     massages: [
@@ -24,13 +24,13 @@ let initialState = {
 
 const dialogReducer = (state = initialState, action) => {
     switch (action.type) {
-        case updateNewMassageText: {
+        case update_NewMassage_Text: {
             return {
                 ...state,
                 newMassageText: action.newText
             }
         }
-        case addMassage: {
+        case add_Massage: {
             return {
                 ...state,
                 massages: [...state.massages,{id:7,massege:state.newMassageText}],
@@ -42,5 +42,5 @@ const dialogReducer = (state = initialState, action) => {
     }
 }
 export default dialogReducer;
-export const addMassageActionCreator = () => ({ type: addMassage })
-export const onMassageChangeActionCreator = (text) => ({ type: updateNewMassageText, newText: text })
+export const addMassage = () => ({ type: add_Massage })
+export const onMassageChange = (text) => ({ type: update_NewMassage_Text, newText: text })
