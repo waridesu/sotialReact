@@ -18,6 +18,9 @@ export const usersApi = {
     authMe() {
         return instance.get(`auth/me`)
     },
+    profile(id){
+        return instance.get(`profile/`+id)
+    },
     follow(id){
         return instance.post(`follow/${id}`)
     },

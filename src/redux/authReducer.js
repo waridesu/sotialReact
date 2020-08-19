@@ -1,24 +1,40 @@
-const set_Auth_Data = 'set_Auth_Data'
+import { usersApi } from "../Api/Api";
+
+const set_Auth_Data = "set_Auth_Data";
 
 let initialState = {
-    id: null,
-    email: null,
-    login: null,
-    isAuth: false
-}
+  id: null,
+  email: null,
+  login: null,
+  isAuth: false,
+};
 
 const AuthReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case set_Auth_Data: {
-            return { ...state,
-                ...action.data.id,
-                isAuth: true }
-        }
-        default:
-            return state;
+  switch (action.type) {
+    case set_Auth_Data: {
+      return {
+        ...state,
+        ...action.data.id,
+        isAuth: true,
+      };
     }
-}
+    default:
+      return state;
+  }
+};
 
-export const setAuthData = (id, email, login) => ({ type: set_Auth_Data, data:{id, email, login}})
+export const setAuthData = (id, email, login) => ({
+  type: set_Auth_Data,
+  data: { id, email, login },
+});
+export const getAuthData = () => {
+  return (dispatch) => {
+    usersApi.authMe().then((response) => {
+      if (response.data.resultCode === 0) {
+        dispatch(setAuthData(response.data.data));
+      }
+    });
+  };
+};
 
 export default AuthReducer;
