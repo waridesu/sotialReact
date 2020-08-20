@@ -1,6 +1,5 @@
-import React from 'react';
+import React from "react";
 
-const AuthDirect =(props)=>
-<p>Need to LogIn</p>
+const AuthDirect = (props) => <p>Need to LogIn</p>;
 
 export default AuthDirect;

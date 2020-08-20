@@ -20,12 +20,6 @@ const Header = (props) => (
         <button type="button" />
       </form>
       <nav>
-        <NavLink to="/blan" activeClassName={s.active}>
-          Home
-        </NavLink>
-        <NavLink to="/blak" activeClassName={s.active}>
-          News
-        </NavLink>
         <NavLink to="/profile" activeClassName={s.active}>
           Profile
         </NavLink>

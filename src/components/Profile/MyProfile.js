@@ -21,7 +21,7 @@ const MyProfile = () => (
     </div>
     <img src={avatar} alt="avatar" />
     <div className={s.button}>
-      <Button name="View Profile" link="_blank" />
+      <Button name="View Profile" link="profile" />
     </div>
   </aside>
 );
