@@ -1,4 +1,4 @@
-import { addMassage, onMassageChange } from "../../redux/dialogReducer";
+import { addMassage } from "../../redux/dialogReducer";
 import Dialog from "./Dialog";
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -11,6 +11,6 @@ let mapStateToProps = (state) => {
 };
 
 export default compose(
-  connect(mapStateToProps, { onMassageChange, addMassage }),
+  connect(mapStateToProps, { addMassage }),
   composeWihtAuthRedirect
 )(Dialog);

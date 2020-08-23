@@ -20,7 +20,7 @@ header input {
   height: 100%;
 }
 
-form button {
+.header_search {
   position: absolute;
   transform: rotateY(180deg);
   right: 0;

@@ -17,7 +17,7 @@ const Header = (props) => (
       />
       <form>
         <input type="search" placeholder="search" />
-        <button type="button" />
+        <button type="button" className={s.header_search}/>
       </form>
       <nav>
         <NavLink to="/profile" activeClassName={s.active}>
