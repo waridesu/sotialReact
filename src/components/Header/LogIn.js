@@ -3,15 +3,12 @@ import { NavLink } from "react-router-dom";
 import s from "./Header.module.css";
 
 const LogIn = (props) =>
-  props.isAuth ? (
-    props.login
+  props.isAuth ? (<>
+    <div>{props.login}</div>
+    <button onClick={props.LogOut}>X</button></>
   ) : (
     <NavLink
-      onClick={() => {
-        props.getAuthData();
-      }}
-      to={props.location}
-      exact
+      to='/login'
       activeClassName={s.active}
     >
       Login

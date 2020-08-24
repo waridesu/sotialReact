@@ -8,14 +8,15 @@ const LogInForm = (props) => (
   <form onSubmit={props.handleSubmit} className={s.auth_form}>
     <div className={s.auth_field}>
       <Field
-        placeholder={"Login"}
-        name={"login"}
+        placeholder={"email"}
+        name={"email"}
         component={Input}
         validate={[requiredField]}
       />
       <Field
         placeholder={"Password"}
         name={"password"}
+        type={"password"}
         component={Input}
         validate={[requiredField]}
       />

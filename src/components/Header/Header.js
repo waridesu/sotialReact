@@ -33,7 +33,6 @@ const Header = (props) => (
       <div className={s.heder_profile}>
         <img src={avatar} height="40" width="40" alt="" />
         <LogInContainer />
-        <button type="button" />
       </div>
     </div>
   </header>

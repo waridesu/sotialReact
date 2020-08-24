@@ -19,8 +19,14 @@ export const usersApi = {
   authMe() {
     return instance.get(`auth/me`);
   },
+  LogMe(email, password, rememberMe = false) {
+    return instance.post(`auth/login`, { email, password, rememberMe });
+  },
+  UnLogMe() {
+    return instance.delete(`auth/login`);
+  },
   profile(id) {
-    return instance.get(`profile/` + id);
+    return instance.get(`profile/${id}`);
   },
   follow(id) {
     return instance.post(`follow/${id}`);
@@ -29,10 +35,9 @@ export const usersApi = {
     return instance.delete(`unfollow/${id}`);
   },
   getStatus(id) {
-    return instance.get(`profile/status/` +id);
+    return instance.get(`profile/status/${id}`);
   },
   updateStatus(status) {
-    return instance.put(`profile/status/`, {status: status});
+    return instance.put(`profile/status/`, { status: status });
   },
-
 };

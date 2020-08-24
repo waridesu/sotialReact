@@ -61,17 +61,6 @@ header nav {
 .heder_profile a {
   padding: 5px;
 }
-
-.heder_profile button {
-  margin-top: 10px;
-  padding: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 8px 5px 0 5px;
-  border-color: #003399 transparent transparent transparent;
-}
-
 .header_logo {
   animation: logo-spin infinite 20s linear;
 }
