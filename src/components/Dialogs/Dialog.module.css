@@ -25,7 +25,7 @@
   flex-grow: 1;
 }
 .massege_string {
-  height: calc(100% - 43px);
+  height: calc(100% - 53px);
 }
 .masseges textarea {
   width: 100%;
@@ -37,7 +37,7 @@
 }
 .send_input button {
   position: absolute;
-  right: 2px;
-  top: 2px;
+  right: 0;
+  top: 0;
   background-color: #d9ccec;
 }

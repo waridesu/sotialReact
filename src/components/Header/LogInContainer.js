@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getAuthData, LogOut } from "../../redux/authReducer";
+import { LogOut } from "../../redux/authReducer";
 import LogIn from "./LogIn";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
@@ -14,5 +14,5 @@ let mapStateToProps = (state) => ({
 
 export default compose(
   withRouter,
-  connect(mapStateToProps, { getAuthData, LogOut })
+  connect(mapStateToProps, {  LogOut })
 )(LogInContainer);

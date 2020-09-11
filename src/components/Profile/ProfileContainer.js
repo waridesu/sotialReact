@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   getUserProfile,
@@ -11,32 +11,31 @@ import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { composeWihtAuthRedirect } from "../../HOC/HOC";
 
-class ProfileContainer extends React.Component {
-  componentDidMount() {
-    let id = this.props.match.params.id;
+const ProfileContainer = (props) => {
+  useEffect(() => {
+    let id = props.match.params.id;
     if (!id) {
-      id = this.props.id;
+      id = props.id;
     }
-    this.props.getUserProfile(id);
-    this.props.getUserStatus(id);
-  }
-  render() {
-    return (
-      <>
-        {!this.props.profile ? (
-          <Preloader />
-        ) : (
-          <Profile
-            {...this.props}
-            profile={this.props.profile}
-            status={this.props.status}
-            updateStatus={this.props.updateStatus}
-          />
-        )}
-      </>
-    );
-  }
-}
+    props.getUserProfile(id);
+    props.getUserStatus(id);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return (
+    <>
+      {!props.profile ? (
+        <Preloader />
+      ) : (
+        <Profile
+          {...props}
+          profile={props.profile}
+          status={props.status}
+          updateStatus={props.updateStatus}
+        />
+      )}
+    </>
+  );
+};
 
 let mapStateToProps = (state) => {
   return {

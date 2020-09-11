@@ -6,8 +6,9 @@ import { Textarea } from "../Preloader/FormControls";
 
 const maxLength30= maxLength(30);
 
-const AddMassageForm = (props) => (
-  <form onSubmit={props.handleSubmit} className={s.send_input}>
+const AddMassageForm = (props) =>
+
+<form onSubmit={props.handleSubmit} className={s.send_input}>
     <Field
       component={Textarea}
       name="newMassageText"
@@ -16,7 +17,7 @@ const AddMassageForm = (props) => (
     />
     <button>Send</button>
   </form>
-);
+
 
 const AddMassageFormRedux = reduxForm({ form: "DialogAddMassage" })(
   AddMassageForm

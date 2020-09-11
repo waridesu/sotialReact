@@ -13,3 +13,13 @@
 .auth_field input{
   display: block;
 }
+.auth_field{
+  display: flex;
+}
+.sumError{
+  text-align: center;
+  width: 140px;
+  margin:auto ;
+  padding: 2px;
+  color: red;
+}

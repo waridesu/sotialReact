@@ -7,19 +7,22 @@ import { requiredField } from "../../utils/Validator";
 const LogInForm = (props) => (
   <form onSubmit={props.handleSubmit} className={s.auth_form}>
     <div className={s.auth_field}>
-      <Field
-        placeholder={"email"}
-        name={"email"}
-        component={Input}
-        validate={[requiredField]}
-      />
-      <Field
-        placeholder={"Password"}
-        name={"password"}
-        type={"password"}
-        component={Input}
-        validate={[requiredField]}
-      />
+      <div>
+        <Field
+          placeholder={"email"}
+          name={"email"}
+          component={Input}
+          validate={[requiredField]}
+        />
+        <Field
+          placeholder={"Password"}
+          name={"password"}
+          type={"password"}
+          component={Input}
+          validate={[requiredField]}
+        />
+      </div>
+      {props.error && <div className={s.sumError}>{props.error}</div>}
     </div>
     <label>
       <Field
@@ -30,6 +33,7 @@ const LogInForm = (props) => (
       />
       remember
     </label>
+
     <button>login</button>
   </form>
 );

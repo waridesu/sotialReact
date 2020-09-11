@@ -16,7 +16,7 @@ const Users = (props) => {
             <Link to={"/profile/" + u.id}>
               <img
                 src={
-                  u.photos.small != null
+                  u.photos.small
                     ? u.photos.small
                     : "https://www.vikids.ru/images/default_avatar.png?avatar_cached_at=1562752082"
                 }

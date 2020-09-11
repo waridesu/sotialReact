@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   getUSers,
@@ -13,35 +13,35 @@ import {
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
 
-class UsersContainer extends React.Component {
-  componentDidMount() {
-    this.props.getUSers(this.props.currentPage, this.props.pageSize);
-  }
-  onPageChanged = (p) => {
-    this.props.getUSers(p, this.props.pageSize);
-  };
+const  UsersContainer= (props)=> {
+  useEffect(()=>{
+    props.getUSers(props.currentPage, props.pageSize);
+//eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
-  render() {
+  let onPageChanged = (p) => {
+   props.getUSers(p, props.pageSize);
+  }
     return (
       <>
-        {this.props.isFetching ? (
+        {props.isFetching ? (
           <Preloader />
         ) : (
           <Users
-            users={this.props.users}
-            pageSize={this.props.pageSize}
-            totalUsersCount={this.props.totalUsersCount}
-            currentPage={this.props.currentPage}
-            onPageChanged={this.onPageChanged}
-            follow={this.props.follow}
-            unfollow={this.props.unfollow}
-            followindInProgress={this.props.followindInProgress}
+            users={props.users}
+            pageSize={props.pageSize}
+            totalUsersCount={props.totalUsersCount}
+            currentPage={props.currentPage}
+            onPageChanged={onPageChanged}
+            follow={props.follow}
+            unfollow={props.unfollow}
+            followindInProgress={props.followindInProgress}
           />
         )}
       </>
     );
   }
-}
+
 
 let mapStateToProps = (state) => {
   return {
