@@ -27,14 +27,13 @@ export const setAuthData = (id, email, login, isAuth) => ({
   type: set_Auth_Data,
   payload: {id, email, login, isAuth},
 });
-export const getAuthData = () => (dispatch) => {
-  return usersApi.authMe().then((response) => {
+export const getAuthData = () => (dispatch) => usersApi.authMe().then((response) => {
     if (response.data.resultCode === 0) {
       let {id, email, login} = response.data.data;
       dispatch(setAuthData(id, email, login, true));
     }
   });
-};
+
 
 export const LogIn = (email, password, rememberMe) => (dispatch) => {
   usersApi.LogMe(email, password, rememberMe).then((response) => {
