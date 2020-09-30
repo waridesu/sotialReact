@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import "./App.css";
 import MyProfile from "./components/Profile/MyProfile";
 import DialogContainer from "./components/Dialogs/Dialog_Container";
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Route } from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import AuthDirect from "./components/Preloader/AuthDirect";

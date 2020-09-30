@@ -29,7 +29,6 @@ const LogInForm = (props) => (
         type={"checkbox"}
         name={"rememberMe"}
         component={Input}
-        validate={[requiredField]}
       />
       remember
     </label>

@@ -3,31 +3,31 @@
   flex-grow: 1;
 }
 
-.dialogitem {
+.dialogItem {
   display: flex;
   align-items: center;
 }
 
-.dialogitem img {
+.dialogItem img {
   height: 40px;
   width: 40px;
   border-radius: 50%;
 }
 
-.dialogitem a {
+.dialogItem a {
   padding: 10px 5px;
   text-decoration: none;
 }
-.dialogitem a.active {
+.dialogItem a.active {
   color: red;
 }
-.masseges {
+.massages {
   flex-grow: 1;
 }
-.massege_string {
+.massage_string {
   height: calc(100% - 53px);
 }
-.masseges textarea {
+.massages textarea {
   width: 100%;
   height: 20px;
   box-sizing: border-box;
@@ -36,8 +36,14 @@
   position: relative;
 }
 .send_input button {
+  border-style: ridge ;
   position: absolute;
   right: 0;
   top: 0;
   background-color: #d9ccec;
+}
+.send_input span{
+  position: absolute;
+  top: -2px;
+  right: 47px;
 }

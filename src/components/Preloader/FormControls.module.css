@@ -1,8 +1,12 @@
 .form_control.error .input,
 .form_control.error .textarea {
-  border: 1px red solid;
-  color: red;
+    outline: 1px solid red;
+    color: red;
 }
-.form_control.error span {
+.form_control.error{
+    position: relative;
+}
+.error span {
+    position: absolute;
     color: red;
 }

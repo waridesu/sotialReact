@@ -23,3 +23,7 @@
   padding: 2px;
   color: red;
 }
+.auth_field span{
+  top: -2px;
+  right: 2px;
+}

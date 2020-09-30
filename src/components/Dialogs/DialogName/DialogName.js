@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 
 const DialogName = (props) => 
-    <div className={s.dialogitem}>
+    <div className={s.dialogItem}>
         <img src={props.src} alt="name Avatar" />
         <NavLink to={"/dialogs/" + props.id} exact activeClassName={s.active}>{props.name}</NavLink>
     </div>

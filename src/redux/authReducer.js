@@ -35,8 +35,8 @@ export const getAuthData = () => (dispatch) => usersApi.authMe().then((response)
   });
 
 
-export const LogIn = (email, password, rememberMe) => (dispatch) => {
-  usersApi.LogMe(email, password, rememberMe).then((response) => {
+export const LogIn = (email, password, rememberMe) => async (dispatch) => {
+  const  response = await usersApi.LogMe(email, password, rememberMe)
     if (response.data.resultCode === 0) {
       dispatch(getAuthData());
     } else {
@@ -50,15 +50,14 @@ export const LogIn = (email, password, rememberMe) => (dispatch) => {
           })
       );
     }
-  });
 };
 
-export const LogOut = () => (dispatch) => {
-    usersApi.UnLogMe().then((response) => {
+export const LogOut = () => async (dispatch) => {
+    const  response = await usersApi.UnLogMe();
       if (response.data.resultCode === 0) {
         dispatch(setAuthData(null, null, null, false));
       }
-    });
+
 };
 
 export default AuthReducer;

@@ -1,13 +1,15 @@
+import {reset} from "redux-form";
+
 const add_Massage = "ADD_MASSAGE";
 
 let initialState = {
   massages: [
-    { id: 1, massege: "Hi" },
-    { id: 2, massege: "Hi nice" },
-    { id: 3, massege: "Hi nice to" },
-    { id: 4, massege: "Hi nice to see" },
-    { id: 5, massege: "Hi nice to see you" },
-    { id: 6, massege: "Hi nice to see you here" },
+    { id: 1, massage: "Hi" },
+    { id: 2, massage: "Hi nice" },
+    { id: 3, massage: "Hi nice to" },
+    { id: 4, massage: "Hi nice to see" },
+    { id: 5, massage: "Hi nice to see you" },
+    { id: 6, massage: "Hi nice to see you here" },
   ],
   companion: [
     { id: 1, name: "Liam", src: "https://via.placeholder.com/40" },
@@ -29,16 +31,22 @@ const dialogReducer = (state = initialState, action) => {
 
         massages: [
           ...state.massages,
-          { id: 7, massege: action.newMassageText },
+          { id: 7, massage: action.newMassageText },
         ],
+
       };
+
     }
     default:
       return state;
   }
 };
-export default dialogReducer;
-export const addMassage = (newMassageText) => ({
+ export const addMassage = (newMassageText) => ({
   type: add_Massage,
   newMassageText,
 });
+ export const resetAddMassage=(newMassageText)=> dispatch=>{
+   dispatch(addMassage(newMassageText));
+   dispatch(reset('DialogAddMassage'));
+ }
+export default dialogReducer;

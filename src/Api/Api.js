@@ -32,7 +32,7 @@ export const usersApi = {
     return instance.post(`follow/${id}`);
   },
   unfollow(id) {
-    return instance.delete(`unfollow/${id}`);
+    return instance.delete(`follow/${id}`);
   },
   getStatus(id) {
     return instance.get(`profile/status/${id}`);
