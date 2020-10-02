@@ -1,15 +1,9 @@
 import React from "react";
 import s from "./Users.module.css";
 import { Link } from "react-router-dom";
+import Paginator from "./Paginator";
 
-const Users = (props) => {
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  let pages = [];
-  for (let i = 1; i <= pagesCount && i <= 35; i++) {
-    pages.push(i);
-  }
-  return (
-    <div>
+const Users = (props) => <div>
       {props.users.map((u) => (
         <div className={s.users_profile} key={u.id}>
           <div className={s.subscriber}>
@@ -56,22 +50,8 @@ const Users = (props) => {
         </div>
       ))}
       <div className={s.users_pages}>
-        {pages.map((p) => {
-          return (
-            <button
-              type="button"
-              className={props.currentPage === p && s.selectedPage}
-              onClick={(e) => {
-                props.onPageChanged(p);
-              }}
-            >
-              {p}
-            </button>
-          );
-        })}
+          <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged} totalUsersCount={props.totalUsersCount} pageSize={props.pageSize}/>
       </div>
     </div>
-  );
-};
 
 export default Users;

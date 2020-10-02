@@ -2,14 +2,17 @@ import React, {useEffect} from "react";
 import "./App.css";
 import MyProfile from "./components/Profile/MyProfile";
 import DialogContainer from "./components/Dialogs/Dialog_Container";
-import {BrowserRouter, Route } from "react-router-dom";
+import {BrowserRouter, Route, withRouter} from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import AuthDirect from "./components/Preloader/AuthDirect";
 import Header from "./components/Header/Header";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
+import { compose } from "redux";
 import {initializeApp} from "./redux/appReducer"
 import Preloader from "./components/Preloader/Preloader";
+import store from "./redux/redux_store";
+
 
 const App = props => {
   useEffect(() => {
@@ -17,8 +20,7 @@ const App = props => {
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return  !props.initialized ? <Preloader />
-      :<BrowserRouter>
-        <div className="app-conteiner">
+      :<div className="app-conteiner">
           <Header/>
           <div className="page_conteiner">
             <MyProfile/>
@@ -30,9 +32,17 @@ const App = props => {
             </div>
           </div>
         </div>
-      </BrowserRouter>
+
 };
 const  mapStateToProps = state =>({
   initialized: state.app.initialized
 })
-export default connect(mapStateToProps, {initializeApp})(App);
+const Container = compose(withRouter,connect(mapStateToProps, {initializeApp}))(App);
+
+const MainApp = props=> <BrowserRouter>
+    <Provider store={store}>
+        <Container />
+    </Provider>
+</BrowserRouter>
+
+export  default MainApp;
