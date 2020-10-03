@@ -7,10 +7,10 @@ import AddMassageFormRedux from "./AddMassageForm";
 
 const Dialog = (props) => {
   let dialogItem = props.dialog.companion.map((n) => (
-    <DialogName id={n.id} name={n.name} src={n.src} />
+    <DialogName key={n.id} id={n.id} name={n.name} src={n.src} />
   ));
-  let massageItem = props.dialog.massages.map((m) => (
-    <DialogMassage massege={m.massage} />
+  let massageItem = props.dialog.massages.map((m,index) => (
+    <DialogMassage key={index} massege={m.massage} />
   ));
   let addingNewMassage=(values)=>{
     props.addThenClean(values.newMassageText)

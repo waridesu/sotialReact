@@ -7,11 +7,11 @@ let mapStateToPropsRedirect = (state) => ({
   isAuth: state.auth.isAuth,
 });
 
-const wihtAuthRedirect = (Component) => (props) => {
+const withAuthRedirect = (Component) => (props) => {
   return !props.isAuth ? <AuthDirect /> : <Component {...props} />;
 };
 
 export const composeWihtAuthRedirect = compose(
   connect(mapStateToPropsRedirect),
-  wihtAuthRedirect
+  withAuthRedirect
 );

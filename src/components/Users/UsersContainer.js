@@ -15,7 +15,7 @@ import Preloader from "../Preloader/Preloader";
 import {getCurrentPage, getPageSize, getTotalUsersCount, getUsers} from "../../redux/UsersSelector";
 
 const UsersContainer = (props) => {
-    useEffect(() => {
+   useEffect(() => {
         props.requestUser(props.currentPage, props.pageSize);
 //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])

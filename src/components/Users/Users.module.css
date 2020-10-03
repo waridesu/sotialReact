@@ -38,15 +38,21 @@
 }
 .users_pages {
   display: flex;
-  justify-content: space-evenly;
+  width: fit-content;
+  margin: auto;
 }
 .users_pages button {
   background-color: unset;
+  margin: 0 3px;
   border-radius: 30%;
   padding: 0;
   width: 20px;
+  height: 20px;
   border: 1px solid #808080;
 }
 .selectedPage {
-  font-weight: 900;
+  font-weight: 700;
+}
+.users_pages .controlButton{
+  margin: 0;
 }
