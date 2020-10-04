@@ -1,7 +1,7 @@
 import React from "react";
 import LogInReduxForm from "./LogInForm";
 import { connect } from "react-redux";
-import { LogIn, LogOut } from "./../../redux/authReducer";
+import { logIn, logOut } from "../../redux/authReducer";
 import { Redirect } from "react-router-dom";
 
 
@@ -19,4 +19,4 @@ const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
 });
 
-export default connect(mapStateToProps, { LogIn, LogOut })(AuthDirect);
+export default connect(mapStateToProps, { LogIn: logIn, LogOut: logOut })(AuthDirect);

@@ -8,7 +8,7 @@ let initialState = {
     profile: null,
     status: null,
 };
-const ProfileReducer = (state = initialState, action) => {
+const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case set_User_Profile: {
             return {...state, profile: action.profile};
@@ -47,4 +47,4 @@ export const updateStatus = (status) =>async (dispatch) => {
 
 };
 
-export default ProfileReducer;
+export default profileReducer;

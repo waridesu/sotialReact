@@ -30,11 +30,11 @@ export const Input = (props) => {
     </FormControl>
   );
 };
-export const createField =(placeholder,name, conponents, valid, type)=>
+export const createField =(placeholder,name, components, valid, type)=>
     <Field
         placeholder={placeholder}
         name={name}
         type={type}
-        component={conponents}
+        component={components}
         validate={valid}
     />

@@ -4,7 +4,7 @@ import {
   getUserProfile,
   getUserStatus,
   updateStatus,
-} from "./../../redux/profileReducer";
+} from "../../redux/profileReducer";
 import Profile from "./Profile";
 import Preloader from "../Preloader/Preloader";
 import { withRouter } from "react-router-dom";

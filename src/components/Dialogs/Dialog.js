@@ -18,7 +18,7 @@ const Dialog = (props) => {
 
   return (
     <div className={s.dialog_container}>
-      <div className={s.name}>{dialogItem}</div>
+      <div>{dialogItem}</div>
       <div className={s.massages}>
         <div className={s.massage_string}>{massageItem}</div>
         <AddMassageFormRedux onSubmit={addingNewMassage} />

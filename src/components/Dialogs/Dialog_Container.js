@@ -4,11 +4,10 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { composeWihtAuthRedirect } from "../../HOC/HOC";
 
-let mapStateToProps = (state) => {
-  return {
+const mapStateToProps = (state) =>({
     dialog: state.dialog,
-  };
-};
+  });
+
 
 export default compose(
   connect(mapStateToProps, { addThenClean: resetAddMassage }),

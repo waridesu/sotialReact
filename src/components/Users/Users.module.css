@@ -46,7 +46,8 @@
   margin: 0 3px;
   border-radius: 30%;
   padding: 0;
-  width: 20px;
+  min-width: 20px;
+  width: fit-content;
   height: 20px;
   border: 1px solid #808080;
 }

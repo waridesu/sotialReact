@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import s from "./Dialog.module.css";
 import { Field, reduxForm } from "redux-form";
 import { requiredField,maxLength } from "../../utils/Validator";
@@ -7,9 +7,6 @@ import { Textarea } from "../Preloader/FormControls";
 const maxLength30= maxLength(30);
 
 const AddMassageForm = (props) => {
-    useEffect(() => {
-
-    }, []);
     return <form onSubmit={props.handleSubmit} className={s.send_input}>
         <Field
             component={Textarea}

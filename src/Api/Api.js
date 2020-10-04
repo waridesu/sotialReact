@@ -19,10 +19,10 @@ export const usersApi = {
   authMe() {
     return instance.get(`auth/me`);
   },
-  LogMe(email, password, rememberMe = false) {
+  logMe(email, password, rememberMe = false) {
     return instance.post(`auth/login`, { email, password, rememberMe });
   },
-  UnLogMe() {
+  unLogMe() {
     return instance.delete(`auth/login`);
   },
   profile(id) {

@@ -67,8 +67,8 @@ const usersReducer = (state = initialState, action) => {
     }
 };
 
-export const followSucces = (userId) => ({type: FOLLOW, userId});
-export const unfollowSucces = (userId) => ({type: UNFOLLOW, userId});
+export const followSuccess = (userId) => ({type: FOLLOW, userId});
+export const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId});
 export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalUsersCount) => ({
@@ -104,10 +104,10 @@ const resetFlow =async (dispatch, id, apiMethod, actionCreator)=>{
 }
 
 export const follow = (id) =>(dispatch) => {
-    resetFlow(dispatch, id, usersApi.follow.bind(usersApi), followSucces);
+    resetFlow(dispatch, id, usersApi.follow.bind(usersApi), followSuccess);
 };
 export const unfollow = (id) =>(dispatch) => {
-    resetFlow(dispatch, id, usersApi.unfollow.bind(usersApi), unfollowSucces);
+    resetFlow(dispatch, id, usersApi.unfollow.bind(usersApi), unfollowSuccess);
 };
 
 export default usersReducer;
