@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Preloader.module.css";
-import { reduxForm, Field } from "redux-form";
+import { reduxForm } from "redux-form";
 import {createField, Input} from "./FormControls";
 import { requiredField } from "../../utils/Validator";
 
