@@ -1,7 +1,7 @@
 import React from "react";
 import ProfileStatusWithHooks from "./ProfileStatus";
 
-const Profile = (props) => (
+const Profile = props => (
   <div>
       <img
           src={
