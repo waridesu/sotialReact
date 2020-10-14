@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {
     getUserProfile,
-    getUserStatus,
+    getUserStatus, setUserProfile,
     updateStatus,
 } from "../../redux/profileReducer";
 import Profile from "./Profile";
@@ -11,13 +11,16 @@ import {withRouter} from "react-router-dom";
 import {compose} from "redux";
 import {composeWihtAuthRedirect} from "../../HOC/HOC";
 
-const ProfileContainer = ({authId,getUserProfile,getUserStatus,...props}) => {
+const ProfileContainer = ({authId,getUserProfile,getUserStatus,setUserProfile,...props}) => {
     const {match}= props
     useEffect(() => {
         const id =match.params.id || authId;
         getUserProfile(id);
         getUserStatus(id);
-    }, [match.params.id, authId,getUserProfile,getUserStatus]);
+        return()=>{
+            setUserProfile(null)
+        }
+    }, [match.params.id, authId,getUserProfile,getUserStatus,setUserProfile]);
     return (
         <>
             {!props.profile ? (
@@ -42,6 +45,6 @@ let mapStateToProps = (state) => {
 };
 export default compose(
     composeWihtAuthRedirect,
-    connect(mapStateToProps, {getUserProfile, getUserStatus, updateStatus}),
+    connect(mapStateToProps, {getUserProfile, getUserStatus, updateStatus,setUserProfile}),
     withRouter
 )(ProfileContainer);

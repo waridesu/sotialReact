@@ -38,32 +38,102 @@ header input {
 
 header nav {
   display: flex;
+  flex-direction: row-reverse;
   align-items: center;
   margin-left: auto;
 }
 
 .header_container a {
-  padding: 5px 15px;
+  padding: 5px 10px;
   text-decoration: none;
   color: #003399;
 }
 
-.heder_profile {
+.header_profile {
   width: fit-content;
   display: flex;
   align-items: center;
 }
 
-.heder_profile img {
+.header_profile img {
   border-radius: 50%;
 }
 
-.heder_profile a {
-  padding: 5px;
-}
 .header_logo {
   animation: logo-spin infinite 20s linear;
 }
 a.active {
   color: red;
+}
+@media (max-width: 690px) {
+  header nav{
+    flex-direction: column;
+    background-color: #d9ccec;
+    font-weight: 600;
+    position: fixed;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+    top: -100%;
+    width: 100%;
+    height: 100%;
+    transition: 0.5s ease;
+  }
+  header .links{
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  header nav.active {
+    transform: translateY(100%);
+  }
+  .header_container a {
+    padding: 15px;
+  }
+  .burger {
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 4px;
+    top: 4px;
+    z-index: 3;
+    box-shadow: 0 0 0 1px #003399;
+    border-radius: 5px;
+  }
+  .burger:before,
+  .burger:after,
+  .burger span {
+    content: "";
+    background-color: #003399;
+    position: absolute;
+    width: 85%;
+    height: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.5s ease;
+  }
+  .burger:before {
+    top: 6px;
+  }
+  .burger:after {
+    bottom: 6px;
+  }
+  .burger span {
+    top: 14px;
+  }
+  .burger.active {
+    box-shadow: 0 0 0 1px #003399;
+  }
+  .burger.active:before, .burger.active:after, .burger.active span {
+    background-color: #003399;
+    transform: scale(0);
+  }
+  .burger.active:before {
+    transform: translate(-13px, 8px) rotate(-45deg);
+  }
+  .burger.active:after {
+    transform: translate(-13px, -8px) rotate(45deg);
+  }
 }

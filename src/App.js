@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import "./App.css";
-import MyProfile from "./components/Profile/MyProfile";
+import Resume from "./components/Profile/Resume";
 import DialogContainer from "./components/Dialogs/Dialog_Container";
 import {BrowserRouter, Route, withRouter} from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
@@ -23,8 +23,8 @@ const App = props => {
       :<div className="app-conteiner">
           <Header/>
           <div className="page_conteiner">
-            <MyProfile/>
             <div className="content_conteiner">
+              <Route exact path="/" render={()=><Resume/>}/>
               <Route path="/profile/:id?" render={() => <ProfileContainer/>}/>
               <Route path="/dialogs" render={() => <DialogContainer/>}/>
               <Route path="/users" render={() => <UsersContainer/>}/>

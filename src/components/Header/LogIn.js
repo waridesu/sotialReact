@@ -9,7 +9,7 @@ const LogIn = (props) =>
   ) : (
     <NavLink
       to='/login'
-      activeClassName={s.active}
+      activeClassName={s.active} onClick={props.onBurger}
     >
       Login
     </NavLink>
