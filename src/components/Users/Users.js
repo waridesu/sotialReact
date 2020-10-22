@@ -1,7 +1,6 @@
 import React from "react";
 import s from "./Users.module.css";
 import { Link } from "react-router-dom";
-import Paginator from "./Paginator";
 
 const Users = (props) => <div>
       {props.users.map((u) => (
@@ -49,9 +48,6 @@ const Users = (props) => <div>
           </div>
         </div>
       ))}
-      <div className={s.users_pages}>
-          <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged} totalItemCount={props.totalUsersCount} pageSize={props.pageSize}/>
-      </div>
     </div>
 
 export default Users;

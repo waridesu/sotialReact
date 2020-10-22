@@ -12,6 +12,9 @@ import { compose } from "redux";
 import {initializeApp} from "./redux/appReducer"
 import Preloader from "./components/Preloader/Preloader";
 import store from "./redux/redux_store";
+import Paginator from "./components/Users/Paginator";
+import {getCurrentPage, getPageSize, getTotalUsersCount} from "./redux/UsersSelector";
+import {requestUser} from "./redux/usersReducer";
 
 
 const App = props => {
@@ -31,13 +34,21 @@ const App = props => {
               <Route path="/login" render={() => <AuthDirect/>}/>
             </div>
           </div>
-        </div>
+          {props.isUsers && <Paginator currentPage={props.currentPage} requestUser={props.requestUser} totalItemCount={props.totalUsersCount} pageSize={props.pageSize}/>}
+
+      </div>
 
 };
 const  mapStateToProps = state =>({
-  initialized: state.app.initialized
+    initialized: state.app.initialized,
+    isUsers: state.usersPage.isUser,
+    currentPage: getCurrentPage(state),
+    totalUsersCount: getTotalUsersCount(state),
+    pageSize: getPageSize(state),
+    requestUser: requestUser(state),
+
 })
-const Container = compose(withRouter,connect(mapStateToProps, {initializeApp}))(App);
+const Container = compose(withRouter,connect(mapStateToProps, {initializeApp,requestUser}))(App);
 
 const MainApp = props=> <BrowserRouter>
     <Provider store={store}>

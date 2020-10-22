@@ -8,6 +8,7 @@ const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const SET_TOGGLE_FETCHING = "SET_TOGGLE_FETCHING";
 const SET_TOGGLE_FOLLOWING = "SET_TOGGLE_FOLLOWING";
+const isUsersCase ="isUsersCase";
 
 let initialState = {
     users: [
@@ -27,6 +28,7 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
+    isUser: false,
     followingInProgress: [],
 };
 
@@ -54,6 +56,10 @@ const usersReducer = (state = initialState, action) => {
 
         case SET_TOGGLE_FETCHING:
             return {...state, isFetching: action.isFetching};
+
+        case isUsersCase:{
+            return {...state, isUser: action.isUser};
+        }
         case SET_TOGGLE_FOLLOWING:
             return {
                 ...state,
@@ -78,6 +84,10 @@ export const setTotalUsersCount = (totalUsersCount) => ({
 export const setToggleIsFetching = (isFetching) => ({
     type: SET_TOGGLE_FETCHING,
     isFetching,
+});
+export const SetIsUsersCase = (isUser) => ({
+    type: isUsersCase,
+    isUser,
 });
 export const setToggleFollowing = (isFetching, userId) => ({
     type: SET_TOGGLE_FOLLOWING,

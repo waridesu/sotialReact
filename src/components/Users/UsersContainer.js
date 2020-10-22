@@ -8,21 +8,21 @@ import {
     setCurrentPage,
     setTotalUsersCount,
     setToggleIsFetching,
-    setToggleFollowing,
+    setToggleFollowing, SetIsUsersCase,
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
 import {getCurrentPage, getPageSize, getTotalUsersCount, getUsers} from "../../redux/UsersSelector";
 
-const UsersContainer = ({requestUser, currentPage, pageSize, isFetching, users, totalUsersCount, followingInProgress, follow, unfollow}) => {
+const UsersContainer = ({requestUser, SetIsUsersCase, currentPage, pageSize, isFetching, users, totalUsersCount, followingInProgress, follow, unfollow}) => {
     useEffect(() => {
+        SetIsUsersCase(true)
         requestUser(currentPage, pageSize);
-//eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+        return () => {
+            SetIsUsersCase(false)
+        }
+    }, [requestUser, currentPage, pageSize,SetIsUsersCase])
 
-    const onPageChanged = (p) => {
-        requestUser(p, pageSize);
-    }
     return (
         <>
             {isFetching ? (
@@ -33,7 +33,6 @@ const UsersContainer = ({requestUser, currentPage, pageSize, isFetching, users, 
                     pageSize={pageSize}
                     totalUsersCount={totalUsersCount}
                     currentPage={currentPage}
-                    onPageChanged={onPageChanged}
                     follow={follow}
                     unfollow={unfollow}
                     followingInProgress={followingInProgress}
@@ -52,6 +51,7 @@ const mapStateToProps = (state) => {
         currentPage: getCurrentPage(state),
         isFetching: state.usersPage.isFetching,
         followingInProgress: state.usersPage.followingInProgress,
+        isUsers: state.usersPage.isUsers,
     };
 };
 
@@ -64,4 +64,5 @@ export default connect(mapStateToProps, {
     setToggleIsFetching,
     setToggleFollowing,
     requestUser,
+    SetIsUsersCase,
 })(UsersContainer);
