@@ -21,13 +21,13 @@
 .dialogItem a.active {
   color: red;
 }
-.massages {
+.messages {
   flex-grow: 1;
 }
-.massage_string {
+.message_string {
   height: calc(100% - 53px);
 }
-.massages textarea {
+.messages textarea {
   width: 100%;
   height: 20px;
   box-sizing: border-box;

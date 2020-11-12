@@ -1,16 +1,16 @@
 import {reset} from "redux-form";
 
-const add_Massage = "ADD_MASSAGE";
+const add_Message = "ADD_MESSAGE";
 
 const initialState = {
-  massages: [
-    {id: 1, massage: "Hi"},
-    {id: 2, massage: "Hi nice"},
-    {id: 3, massage: "Hi nice to"},
-    {id: 4, massage: "Hi nice to see"},
-    {id: 5, massage: "Hi nice to see you"},
-    {id: 6, massage: "Hi nice to see you here"},
-  ] as Array<massageType>,
+  messages: [
+    {id: 1, message: "Hi"},
+    {id: 2, message: "Hi nice"},
+    {id: 3, message: "Hi nice to"},
+    {id: 4, message: "Hi nice to see"},
+    {id: 5, message: "Hi nice to see you"},
+    {id: 6, message: "Hi nice to see you here"},
+  ] as Array<messageType>,
   companion: [
     {id: 1, name: "Liam", src: "https://via.placeholder.com/40"},
     {id: 2, name: "Terry", src: "https://via.placeholder.com/40"},
@@ -22,37 +22,34 @@ const initialState = {
     {id: 8, name: "Elijah", src: "https://via.placeholder.com/40"},
   ]as Array<companionType>,
 };
-type massageType = {id: number, massage:string}
+type messageType = {id: number, message:string}
 type companionType ={id:number,name:string,src:string}
 export  type initialStateType = typeof initialState
 const dialogReducer = (state = initialState, action: any): initialStateType => {
   switch (action.type) {
-    case add_Massage: {
+    case add_Message: {
       return {
         ...state,
-
-        massages: [
-          ...state.massages,
-          {id: 7, massage: action.newMassageText},
+        messages: [
+          ...state.messages,
+          {id: 7, message: action.newMessageText},
         ],
-
       };
-
     }
     default:
       return state;
   }
 };
-type  addMassageType= {
-  type: typeof add_Massage
-  newMassageText:string
+type  addMessageType= {
+  type: typeof add_Message
+  newMessageText:string
 }
-export const addMassage = (newMassageText: string):addMassageType => ({
-  type: add_Massage,
-  newMassageText,
+export const addMessage = (newMessageText: string):addMessageType => ({
+  type: add_Message,
+  newMessageText,
 });
-export const resetAddMassage = (newMassageText: string) => (dispatch: any) => {
-  dispatch(addMassage(newMassageText));
-  dispatch(reset('DialogAddMassage'));
+export const resetAddMessage = (newMessageText: string) => (dispatch: any) => {
+  dispatch(addMessage(newMessageText));
+  dispatch(reset('DialogAddMessage'));
 }
 export default dialogReducer;

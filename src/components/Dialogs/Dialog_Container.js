@@ -1,4 +1,4 @@
-import { resetAddMassage } from "../../redux/dialogReducer";
+import {resetAddMessage} from "../../redux/dialogReducer";
 import Dialog from "./Dialog";
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -10,6 +10,6 @@ const mapStateToProps = (state) =>({
 
 
 export default compose(
-  connect(mapStateToProps, { addThenClean: resetAddMassage }),
+  connect(mapStateToProps, { addThenClean: resetAddMessage }),
   composeWihtAuthRedirect
 )(Dialog);

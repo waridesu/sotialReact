@@ -1,6 +1,6 @@
-import dialogReducer, {addMassage} from "./dialogReducer";
+import dialogReducer, {addMessage} from "./dialogReducer";
 const  state = {
-    massages: [
+    messages: [
         { id: 1, massage: "Hi" },
         { id: 2, massage: "Hi nice" },
         { id: 3, massage: "Hi nice to" },
@@ -10,16 +10,16 @@ const  state = {
     ]}
 
 it('new massage should be increment',()=>{
-    const action = addMassage('some')
+    const action = addMessage('some')
 
     const newState = dialogReducer(state,action)
-    expect(newState.massages.length).toBe(7);
-    expect(newState.massages[6].massage).toBe('some');
+    expect(newState.messages.length).toBe(7);
+    expect(newState.messages[6].message).toBe('some');
 })
 it('after deleting length sho',()=>{
-    const action = addMassage('some')
+    const action = addMessage('some')
 
     const newState = dialogReducer(state,action)
-    expect(newState.massages.length).toBe(7);
-    expect(newState.massages[6].massage).toBe('some');
+    expect(newState.messages.length).toBe(7);
+    expect(newState.messages[6].message).toBe('some');
 })

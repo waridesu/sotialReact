@@ -8,13 +8,24 @@ import {
     setCurrentPage,
     setTotalUsersCount,
     setToggleIsFetching,
-    setToggleFollowing, SetIsUsersCase,
+    setToggleFollowing, SetIsUsersCase, usersType,
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
 import {getCurrentPage, getPageSize, getTotalUsersCount, getUsers} from "../../redux/UsersSelector";
-
-const UsersContainer = ({requestUser, SetIsUsersCase, currentPage, pageSize, isFetching, users, totalUsersCount, followingInProgress, follow, unfollow}) => {
+type propsType ={
+    currentPage: number
+    pageSize:number
+    isFetching:boolean
+    totalUsersCount:number
+    users: Array<usersType>
+    requestUser:(currentPage: number, pageSize: number) => void
+    followingInProgress:Array<number>
+    follow:()=>void
+    unfollow:()=>void
+    SetIsUsersCase:(SetIsUsersCase:boolean)=>void
+}
+const UsersContainer: React.FC<propsType> = ({requestUser, SetIsUsersCase, currentPage, pageSize, isFetching, users, totalUsersCount, followingInProgress, follow, unfollow}) => {
     useEffect(() => {
         SetIsUsersCase(true)
         requestUser(currentPage, pageSize);

@@ -1,6 +1,6 @@
 .users_profile {
   display: flex;
-  padding: 5px;
+  padding:5px calc(50% - 140px);
 }
 .subscriber {
   align-self: center;
@@ -30,11 +30,8 @@
   border-radius: 10px;
 }
 .users_profile__name {
-  margin-left: 10px;
-}
-.users_profile__location {
-  margin-right: 10px;
   text-align: center;
+  margin:auto;
 }
 .users_pages {
   display: flex;

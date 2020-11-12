@@ -3,7 +3,7 @@ import dialogReducer from "./dialogReducer";
 let store = {
   _state: {
     dialog: {
-      massages: [
+      messages: [
         { id: 1, massege: "Hi" },
         { id: 2, massege: "Hi nice" },
         { id: 3, massege: "Hi nice to" },

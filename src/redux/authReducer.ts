@@ -12,14 +12,12 @@ const initialState = {
 
 const AuthReducer = (state = initialState, action: any): initialStateType => {
   switch (action.type) {
-    case set_Auth_Data: {
+    case set_Auth_Data:
       return {
         ...state,
         ...action.payload,
       };
-    }
-    default:
-      return state;
+    default: return state;
   }
 };
 
