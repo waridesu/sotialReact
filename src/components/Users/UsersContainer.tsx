@@ -13,27 +13,26 @@ import {
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
 import {getCurrentPage, getPageSize, getTotalUsersCount, getUsers} from "../../redux/UsersSelector";
+import {AppStateType} from "../../redux/redux_store";
 type propsType ={
     currentPage: number
-    pageSize:number
-    isFetching:boolean
-    totalUsersCount:number
+    pageSize: number
+    isFetching: boolean
     users: Array<usersType>
-    requestUser:(currentPage: number, pageSize: number) => void
-    followingInProgress:Array<number>
-    follow:()=>void
-    unfollow:()=>void
-    SetIsUsersCase:(SetIsUsersCase:boolean)=>void
+    followingInProgress: Array<number>
+    follow: (id: number) => void
+    unfollow: (id: number) => void
+    requestUser: (currentPage: number, pageSize: number) => void
+    SetIsUsersCase: (SetIsUsersCase: boolean) => void
 }
-const UsersContainer: React.FC<propsType> = ({requestUser, SetIsUsersCase, currentPage, pageSize, isFetching, users, totalUsersCount, followingInProgress, follow, unfollow}) => {
+const UsersContainer: React.FC<propsType> = ({requestUser, pageSize, SetIsUsersCase, currentPage, isFetching, users, followingInProgress, follow, unfollow}) => {
     useEffect(() => {
         SetIsUsersCase(true)
         requestUser(currentPage, pageSize);
         return () => {
             SetIsUsersCase(false)
         }
-    }, [requestUser, currentPage, pageSize,SetIsUsersCase])
-
+    }, [requestUser, currentPage, pageSize, SetIsUsersCase])
     return (
         <>
             {isFetching ? (
@@ -41,9 +40,6 @@ const UsersContainer: React.FC<propsType> = ({requestUser, SetIsUsersCase, curre
             ) : (
                 <Users
                     users={users}
-                    pageSize={pageSize}
-                    totalUsersCount={totalUsersCount}
-                    currentPage={currentPage}
                     follow={follow}
                     unfollow={unfollow}
                     followingInProgress={followingInProgress}
@@ -54,17 +50,15 @@ const UsersContainer: React.FC<propsType> = ({requestUser, SetIsUsersCase, curre
 }
 
 
-const mapStateToProps = (state) => {
-    return {
+const mapStateToProps = (state: AppStateType) => ({
         users: getUsers(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isFetching: state.usersPage.isFetching,
         followingInProgress: state.usersPage.followingInProgress,
-        isUsers: state.usersPage.isUsers,
-    };
-};
+        isUsers: state.usersPage.isUser,
+    });
 
 export default connect(mapStateToProps, {
     follow,

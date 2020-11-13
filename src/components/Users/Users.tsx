@@ -3,13 +3,13 @@ import s from "./Users.module.css";
 import {Link} from "react-router-dom";
 import {usersType} from "../../redux/usersReducer";
 
-type propsType = {
+type propsType ={
     users: Array<usersType>
     followingInProgress: Array<number>
     unfollow: (id:number)=>void
     follow: (id:number)=>void
 }
-const Users: React.FC<propsType> = ({users, followingInProgress, unfollow, follow}) => <div>
+const Users:React.FC<propsType> = ({users, followingInProgress, unfollow, follow}) => <div>
     {users.map(u => (
         <div className={s.users_profile} key={u.id}>
             <div className={s.subscriber}>

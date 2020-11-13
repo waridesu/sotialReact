@@ -88,7 +88,7 @@ type setToggleIsFetchingAcType = {
 }
 type SetIsUsersCaseAcType ={
     type:typeof isUsersCase
-    isUser: number
+    isUser: boolean
 }
 type setToggleFollowingAcType = {
     type: typeof SET_TOGGLE_FOLLOWING
@@ -101,7 +101,7 @@ export const setUsers = (users: Array<usersType>): setUsersAcType => ({type: SET
 export const setCurrentPage = (currentPage: number): setCurrentPageAcType => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalUsersCount: number):setTotalUsersCountAcType => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
 export const setToggleIsFetching = (isFetching: boolean):setToggleIsFetchingAcType => ({type: SET_TOGGLE_FETCHING, isFetching});
-export const SetIsUsersCase = (isUser: number):SetIsUsersCaseAcType => ({type: isUsersCase, isUser});
+export const SetIsUsersCase = (isUser: boolean):SetIsUsersCaseAcType => ({type: isUsersCase, isUser});
 export const setToggleFollowing = (isFetching: boolean, userId: number):setToggleFollowingAcType => ({
     type: SET_TOGGLE_FOLLOWING,
     isFetching,
