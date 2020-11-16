@@ -13,9 +13,6 @@ const Resume = () =>
         <p>Redux: Flux паттерны, Api запросы и thunk</p>
         <p>JS : Promises, Scope, Generators, Async / Await</p>
         <p>HTML5 валидная верстка,CSS3(адаптивная)</p>
-        <br/>
-        <p>Логин: <b>waridesu@gmail.com</b></p>
-        <p>Пароль: <b>password</b></p>
     </div>
 
 

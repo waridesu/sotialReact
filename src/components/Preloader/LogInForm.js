@@ -17,8 +17,9 @@ const LogInForm = ({handleSubmit, error}) => (
             {createField(null,"rememberMe",Input,null,"checkbox")}
             remember
         </label>
-
         <button>login</button>
+        <p>Логин: <b>waridesu@gmail.com</b></p>
+        <p>Пароль: <b>password</b></p>
     </form>
 );
 

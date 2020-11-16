@@ -3,29 +3,32 @@ import {connect} from "react-redux";
 import {
     requestUser,
     follow,
-    unfollow,
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    setToggleIsFetching,
-    setToggleFollowing, SetIsUsersCase, usersType,
+    unfollow, SetIsUsersCase, usersType,
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
 import {getCurrentPage, getPageSize, getTotalUsersCount, getUsers} from "../../redux/UsersSelector";
 import {AppStateType} from "../../redux/redux_store";
-type propsType ={
+
+type MapStatePropsType ={
     currentPage: number
     pageSize: number
     isFetching: boolean
     users: Array<usersType>
+    totalUsersCount: number
     followingInProgress: Array<number>
+    isUsers: boolean
+}
+type MapDispatchPropsType= {
     follow: (id: number) => void
     unfollow: (id: number) => void
     requestUser: (currentPage: number, pageSize: number) => void
     SetIsUsersCase: (SetIsUsersCase: boolean) => void
 }
-const UsersContainer: React.FC<propsType> = ({requestUser, pageSize, SetIsUsersCase, currentPage, isFetching, users, followingInProgress, follow, unfollow}) => {
+type  OwnPropsType = {}
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
+
+const UsersContainer: React.FC<PropsType> = ({requestUser, pageSize, SetIsUsersCase, currentPage, isFetching, users, followingInProgress, follow, unfollow}) => {
     useEffect(() => {
         SetIsUsersCase(true)
         requestUser(currentPage, pageSize);
@@ -50,7 +53,7 @@ const UsersContainer: React.FC<propsType> = ({requestUser, pageSize, SetIsUsersC
 }
 
 
-const mapStateToProps = (state: AppStateType) => ({
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
         users: getUsers(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
@@ -60,14 +63,10 @@ const mapStateToProps = (state: AppStateType) => ({
         isUsers: state.usersPage.isUser,
     });
 
-export default connect(mapStateToProps, {
+export default connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>
+(mapStateToProps, {
     follow,
     unfollow,
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    setToggleIsFetching,
-    setToggleFollowing,
     requestUser,
     SetIsUsersCase,
 })(UsersContainer);
