@@ -1,13 +1,15 @@
 import {usersApi} from "../Api/Api";
 
+
 const set_User_Profile = "set_User_Profile";
 const set_Status = "set_Status";
 //const on_Status_Change = "on_Status_Change";
 
 const initialState = {
     profile: null as profileType | null,
-    status: null,
+    status: undefined as string | undefined
 };
+
 type initialStateType = typeof initialState
 type contactsType = {
     github: string,
@@ -24,10 +26,11 @@ export type photosType = {
     large: string | null
 }
 
-type profileType = {
+export type profileType = {
     userId: number,
     lookingForAJob: boolean,
     lookingForAJobDescription: string,
+    aboutMe: string
     fullName: string,
     contacts: contactsType,
     photos: photosType
