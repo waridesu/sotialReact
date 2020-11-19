@@ -13,6 +13,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-  withRouter,
-  connect(mapStateToProps, {  LogOut: logOut })
+    withRouter,
+    connect(mapStateToProps, {  LogOut: logOut })
 )(LogInContainer);

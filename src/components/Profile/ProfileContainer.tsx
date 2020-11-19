@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {
     getUserProfile,
-    getUserStatus, setUserProfile,
+    getUserStatus, profileType, setUserProfile,
     updateStatus,
 } from "../../redux/profileReducer";
 import Profile from "./Profile";
@@ -17,7 +17,7 @@ type MapPropsType = ReturnType<typeof mapStateToProps>
 type MapDispatchPropsType = {
     getUserProfile: (id: number | null) => void
     getUserStatus: (id: number | null) => void
-    setUserProfile: () => void
+    setUserProfile: (profile:profileType|null) => void
     updateStatus: (status: string| undefined) => void
 }
 type PathParamsType = {
@@ -31,9 +31,8 @@ const ProfileContainer: React.FC<PropsType> = ({authId, profile, status, match, 
         getUserProfile(id);
         getUserStatus(id);
         return () => {
-            setUserProfile()
-            // eslint-disable-next-line
-            status = undefined
+            setUserProfile(null)
+            getUserStatus(null)
         }
     }, [match.params.id, authId, getUserProfile, getUserStatus, setUserProfile]);
     return (
