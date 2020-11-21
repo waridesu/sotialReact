@@ -11,7 +11,7 @@ const withAuthRedirect = (Component) => (props) => {
   return !props.isAuth ? <AuthDirect /> : <Component {...props} />;
 };
 
-export const composeWihtAuthRedirect = compose(
+export const composeWithAuthRedirect = compose(
   connect(mapStateToPropsRedirect),
   withAuthRedirect
 );

@@ -3,30 +3,22 @@ import {connect} from "react-redux";
 import {
     requestUser,
     follow,
-    unfollow, SetIsUsersCase, usersType,
+    unfollow, SetIsUsersCase,
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
 import {getCurrentPage, getPageSize, getTotalUsersCount, getUsers} from "../../redux/UsersSelector";
 import {AppStateType} from "../../redux/redux_store";
 
-type MapStatePropsType ={
-    currentPage: number
-    pageSize: number
-    isFetching: boolean
-    users: Array<usersType>
-    totalUsersCount: number
-    followingInProgress: Array<number>
-    isUsers: boolean
-}
+type StatePropsType =ReturnType<typeof mapStateToProps>
+
 type MapDispatchPropsType= {
     follow: (id: number) => void
     unfollow: (id: number) => void
     requestUser: (currentPage: number, pageSize: number) => void
     SetIsUsersCase: (SetIsUsersCase: boolean) => void
 }
-type  OwnPropsType = {}
-type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
+type PropsType = StatePropsType & MapDispatchPropsType
 
 const UsersContainer: React.FC<PropsType> = ({requestUser, pageSize, SetIsUsersCase, currentPage, isFetching, users, followingInProgress, follow, unfollow}) => {
     useEffect(() => {
@@ -53,7 +45,7 @@ const UsersContainer: React.FC<PropsType> = ({requestUser, pageSize, SetIsUsersC
 }
 
 
-const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
+const mapStateToProps = (state: AppStateType) => ({
         users: getUsers(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
@@ -63,7 +55,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
         isUsers: state.usersPage.isUser,
     });
 
-export default connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>
+export default connect<StatePropsType, MapDispatchPropsType, {}, AppStateType>
 (mapStateToProps, {
     follow,
     unfollow,

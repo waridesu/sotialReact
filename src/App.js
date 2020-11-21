@@ -6,7 +6,6 @@ import {BrowserRouter, Route, withRouter} from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import AuthDirect from "./components/Preloader/AuthDirect";
-import Header from "./components/Header/Header";
 import {connect, Provider} from "react-redux";
 import { compose } from "redux";
 import {initializeApp} from "./redux/appReducer"
@@ -15,6 +14,7 @@ import store from "./redux/redux_store";
 import Paginator from "./components/Users/Paginator";
 import {getCurrentPage, getPageSize, getTotalUsersCount} from "./redux/UsersSelector";
 import {requestUser} from "./redux/usersReducer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 
 const App = props => {
@@ -24,7 +24,7 @@ const App = props => {
   }, []);
   return  !props.initialized ? <Preloader />
       :<div className="app-conteiner">
-          <Header/>
+          <HeaderContainer/>
           <div className="page_conteiner">
             <div className="content_conteiner">
               <Route exact path="/" render={()=><Resume/>}/>

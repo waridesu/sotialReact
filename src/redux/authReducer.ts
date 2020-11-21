@@ -21,7 +21,7 @@ const AuthReducer = (state = initialState, action: any): initialStateType => {
   }
 };
 
-type setAuthUserActionPayloadType = {
+export type setAuthUserActionPayloadType = {
   id:number | null,
   email:string | null,
   login:string | null,

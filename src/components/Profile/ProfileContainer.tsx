@@ -9,7 +9,7 @@ import Profile from "./Profile";
 import Preloader from "../Preloader/Preloader";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
-import {composeWihtAuthRedirect} from "../../HOC/HOC";
+import {composeWithAuthRedirect} from "../../HOC/HOC";
 import {AppStateType} from "../../redux/redux_store";
 
 type MapPropsType = ReturnType<typeof mapStateToProps>
@@ -58,7 +58,7 @@ const mapStateToProps = (state: AppStateType) => {
     };
 };
 export default compose<React.ComponentType>(
-    composeWihtAuthRedirect, connect(mapStateToProps,
+    composeWithAuthRedirect, connect(mapStateToProps,
         {
             getUserProfile,
             getUserStatus,
