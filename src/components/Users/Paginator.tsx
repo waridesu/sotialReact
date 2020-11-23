@@ -26,7 +26,7 @@ const Paginator: React.FC<propsType> = ({totalItemCount, pageSize, currentPage, 
         <button className={s.controlButton} onClick={() => setPortionNum(portionNum - 1)}>&#60;</button>}
         {pageNum.map((p) => <button key={p} type="button"
                                     className={cn({[s.selectedPage]: currentPage === p})}
-                                    onClick={(e) => {
+                                    onClick={() => {
                                         onPageChanged(p)
                                     }}>
                 {p}

@@ -3,17 +3,23 @@ import s from "./Dialog.module.css";
 import DialogMessage from "./DialogMessage/DialogMessage";
 import DialogName from "./DialogName/DialogName";
 import AddMessageFormRedux from "./AddMessageForm";
-
-
-const Dialog = (props) => {
-  let dialogItem = props.dialog.companion.map((n) => (
-    <DialogName key={n.id} id={n.id} name={n.name} src={n.src} />
+import {initialStateType} from "../../redux/dialogReducer";
+type PropsType={
+    dialog: initialStateType
+    addThenClean: (messageText: string)=>void
+}
+export type newMessageTextType ={
+    newMessageText: string
+}
+const Dialog: React.FC<PropsType> = ({dialog,addThenClean}) => {
+  const dialogItem = dialog.companion.map((d) => (
+    <DialogName key={d.id} id={d.id} name={d.name} src={d.src} />
   ));
-  const messageItem = props.dialog.messages.map((m, index) => (
+  const messageItem = dialog.messages.map((m, index) => (
     <DialogMessage key={index} message={m.message} />
   ));
-  let addingNewMessage=(values)=>{
-    props.addThenClean(values.newMessageText)
+  const addingNewMessage=(values:newMessageTextType)=>{
+    addThenClean(values.newMessageText)
   }
 
   return (
