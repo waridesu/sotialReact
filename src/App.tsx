@@ -10,23 +10,27 @@ import {connect, Provider} from "react-redux";
 import { compose } from "redux";
 import {initializeApp} from "./redux/appReducer"
 import Preloader from "./components/Preloader/Preloader";
-import store from "./redux/redux_store";
+import store,{AppStateType} from "./redux/redux_store";
 import Paginator from "./components/Users/Paginator";
 import {getCurrentPage, getPageSize, getTotalUsersCount} from "./redux/UsersSelector";
 import {requestUser} from "./redux/usersReducer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+type MapPropsType = ReturnType<typeof mapStateToProps>
+type DispatchPropsType = {
+    initializeApp: () => void
+    requestUser:()=>void
+}
 
-
-const App = props => {
+const App:React.FC<MapPropsType&DispatchPropsType> = ({initializeApp,initialized,isUsers,currentPage,totalUsersCount,pageSize}) => {
   useEffect(() => {
-    props.initializeApp()
+    initializeApp()
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return  !props.initialized ? <Preloader />
-      :<div className="app-conteiner">
-          <HeaderContainer/>
-          <div className="page_conteiner">
-            <div className="content_conteiner">
+    return  !initialized ? <Preloader />
+      :<div className="app-container">
+          <HeaderContainer />
+          <div className="app-container">
+            <div className="app-container">
               <Route exact path="/" render={()=><Resume/>}/>
               <Route path="/profile/:id?" render={() => <ProfileContainer/>}/>
               <Route path="/dialogs" render={() => <DialogContainer/>}/>
@@ -34,25 +38,24 @@ const App = props => {
               <Route path="/login" render={() => <AuthDirect/>}/>
             </div>
           </div>
-          {props.isUsers && <Paginator currentPage={props.currentPage} requestUser={props.requestUser} totalItemCount={props.totalUsersCount} pageSize={props.pageSize}/>}
+          {isUsers && <Paginator currentPage={currentPage} requestUser={requestUser} totalItemCount={totalUsersCount} pageSize={pageSize}/>}
 
       </div>
 
 };
-const  mapStateToProps = state =>({
+const  mapStateToProps = (state:AppStateType) =>({
     initialized: state.app.initialized,
     isUsers: state.usersPage.isUser,
     currentPage: getCurrentPage(state),
     totalUsersCount: getTotalUsersCount(state),
     pageSize: getPageSize(state),
-    requestUser: requestUser(state),
-
+    requestUser: requestUser(state.usersPage.currentPage,state.usersPage.pageSize),
 })
 const Container = compose(withRouter,connect(mapStateToProps, {initializeApp,requestUser}))(App);
 
-const MainApp = props=> <BrowserRouter>
+const MainApp:React.FC = () => <BrowserRouter>
     <Provider store={store}>
-        <Container />
+        <Container/>
     </Provider>
 </BrowserRouter>
 

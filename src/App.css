@@ -1,10 +1,10 @@
-.page_conteiner {
+.app-container {
   display: flex;
   width: 100%;
   max-width: 1200px;
   margin: auto;
 }
-.content_conteiner {
+.app-container {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
