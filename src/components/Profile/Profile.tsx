@@ -6,7 +6,7 @@ type PropsType = {
     status: string | undefined
     updateStatus: (status:string| undefined)=>void
 }
-const Profile: React.FC<PropsType> = ({profile, status, updateStatus}) => (
+const Profile = ({profile, status, updateStatus}:PropsType) => (
   <div>
       <img
           src={

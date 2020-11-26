@@ -7,7 +7,7 @@ import {MessageType} from "./Dialog";
 
 const maxLength30= maxLength(30);
 type MassageFormsType = Extract<keyof MessageType, string>
-const AddMessageForm: React.FC<InjectedFormProps<MassageFormsType>> = ({handleSubmit}) => {
+const AddMessageForm = ({handleSubmit}:InjectedFormProps<MassageFormsType>) => {
     return <form onSubmit={handleSubmit} className={s.send_input}>
         <Field
             component={Textarea}

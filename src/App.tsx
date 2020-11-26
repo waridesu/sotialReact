@@ -17,15 +17,14 @@ import {requestUser} from "./redux/usersReducer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type DispatchPropsType = {
-    initializeApp: () => void
-    requestUser:()=>void
+    initializeApp: (initialized:boolean) => void
+    requestUser:(currentPage: number,pageSize: number)=>void
 }
 
 const App:React.FC<MapPropsType&DispatchPropsType> = ({initializeApp,initialized,isUsers,currentPage,totalUsersCount,pageSize}) => {
   useEffect(() => {
-    initializeApp()
-    //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    initializeApp(initialized)
+  }, [initialized]);
     return  !initialized ? <Preloader />
       :<div className="app-container">
           <HeaderContainer />

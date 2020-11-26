@@ -7,7 +7,7 @@ type PropsType={
     name: string
 }
 
-const DialogName: React.FC<PropsType>= ({src,id, name}) =>
+const DialogName= ({src,id, name}:PropsType) =>
     <div className={s.dialogItem}>
         <img src={src} alt="name Avatar" />
         <NavLink to={"/dialogs/" + id} exact activeClassName={s.active}>{name}</NavLink>

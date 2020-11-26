@@ -9,7 +9,7 @@ type propsType = {
     requestUser: (p: number, pageSize: number) => void
     portionSize?: number
 }
-const Paginator: React.FC<propsType> = ({totalItemCount, pageSize, currentPage, requestUser, portionSize = 7}) => {
+const Paginator= ({totalItemCount, pageSize, currentPage, requestUser, portionSize = 7}:propsType) => {
 
     const pagesCount = Math.ceil(totalItemCount / pageSize);
     const [portionNum, setPortionNum] = useState(Math.ceil(currentPage / portionSize));

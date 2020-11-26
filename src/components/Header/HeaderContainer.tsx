@@ -3,10 +3,14 @@ import { connect } from "react-redux";
 import { logOut } from "../../redux/authReducer";
 import { compose } from "redux";
 import {withRouter} from "react-router-dom";
-import Header, {DispatchPropsType, MapPropsType} from "./Header";
+import Header from "./Header";
 import {AppStateType} from "../../redux/redux_store";
 
-const LogInContainer: React.FC<MapPropsType&DispatchPropsType> = ({isAuth,login,logOut}) => <Header isAuth={isAuth} login={login} logOut={logOut}/>;
+export type MapPropsType = ReturnType<typeof mapStateToProps>
+export type DispatchPropsType ={
+    logOut: () => void
+}
+const HeaderContainer= ({isAuth,login,logOut}:MapPropsType&DispatchPropsType) => <Header isAuth={isAuth} login={login} logOut={logOut}/>;
 
 const mapStateToProps = (state: AppStateType) => ({
     isAuth: state.auth.isAuth,
@@ -16,4 +20,4 @@ const mapStateToProps = (state: AppStateType) => ({
 export default compose(
     withRouter,
     connect<MapPropsType,DispatchPropsType,{},AppStateType>(mapStateToProps, { logOut })
-)(LogInContainer);
+)(HeaderContainer as any);

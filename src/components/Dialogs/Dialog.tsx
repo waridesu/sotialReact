@@ -11,7 +11,7 @@ type PropsType={
 export type MessageType ={
     messageText: string
 }
-const Dialog: React.FC<PropsType> = ({dialog,resetAddMessage}) => {
+const Dialog= ({dialog,resetAddMessage}:PropsType) => {
   const dialogItem = dialog.companion.map((d) => (
     <DialogName key={d.id} id={d.id} name={d.name} src={d.src} />
   ));

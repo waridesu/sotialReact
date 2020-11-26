@@ -3,7 +3,7 @@ type PropsType ={
   status: string | undefined
   updateStatus: (status:string|undefined)=>void
 }
-const ProfileStatusWithHooks: React.FC<PropsType>= ({status,updateStatus})=> {
+const ProfileStatusWithHooks= ({status,updateStatus}:PropsType)=> {
   const [editMode, setEditMode] = useState(false);
   const [hookStatus, setHookStatus] = useState<string| undefined>(status);
 

@@ -10,17 +10,16 @@ import Preloader from "../Preloader/Preloader";
 import {getCurrentPage, getPageSize, getTotalUsersCount, getUsers} from "../../redux/UsersSelector";
 import {AppStateType} from "../../redux/redux_store";
 
-type StatePropsType =ReturnType<typeof mapStateToProps>
+type StatePropsType = ReturnType<typeof mapStateToProps>
 
-type MapDispatchPropsType= {
+type MapDispatchPropsType = {
     follow: (id: number) => void
     unfollow: (id: number) => void
     requestUser: (currentPage: number, pageSize: number) => void
     SetIsUsersCase: (SetIsUsersCase: boolean) => void
 }
-type PropsType = StatePropsType & MapDispatchPropsType
 
-const UsersContainer: React.FC<PropsType> = ({requestUser, pageSize, SetIsUsersCase, currentPage, isFetching, users, followingInProgress, follow, unfollow}) => {
+const UsersContainer = ({requestUser, pageSize, SetIsUsersCase, currentPage, isFetching, users, followingInProgress, follow, unfollow}: StatePropsType&MapDispatchPropsType) => {
     useEffect(() => {
         SetIsUsersCase(true)
         requestUser(currentPage, pageSize);
@@ -46,14 +45,14 @@ const UsersContainer: React.FC<PropsType> = ({requestUser, pageSize, SetIsUsersC
 
 
 const mapStateToProps = (state: AppStateType) => ({
-        users: getUsers(state),
-        pageSize: getPageSize(state),
-        totalUsersCount: getTotalUsersCount(state),
-        currentPage: getCurrentPage(state),
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress,
-        isUsers: state.usersPage.isUser,
-    });
+    users: getUsers(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress,
+    isUsers: state.usersPage.isUser,
+});
 
 export default connect<StatePropsType, MapDispatchPropsType, {}, AppStateType>
 (mapStateToProps, {

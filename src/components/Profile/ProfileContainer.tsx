@@ -24,7 +24,7 @@ type PathParamsType = {
     id: string
 }
 type PropsType = MapPropsType & MapDispatchPropsType & RouteComponentProps<PathParamsType>
-const ProfileContainer: React.FC<PropsType> = ({authId, profile, status, match, getUserProfile, getUserStatus, setUserProfile, updateStatus}) => {
+const ProfileContainer = ({authId, profile, status, match, getUserProfile, getUserStatus, setUserProfile, updateStatus}:PropsType) => {
 
     useEffect(() => {
         const id: number | null = +match.params.id || authId;

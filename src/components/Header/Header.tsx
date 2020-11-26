@@ -3,14 +3,9 @@ import logo from "../../logo.svg";
 import avatar from "../../avatar.jpg";
 import s from "./Header.module.css";
 import {NavLink} from "react-router-dom";
-export type MapPropsType = {
-    isAuth: boolean
-    login: string | null
-}
-export type DispatchPropsType = {
-    logOut: () => void
-}
-const Header: React.FC<MapPropsType&DispatchPropsType> = ({isAuth, login,logOut}) => {
+import {DispatchPropsType, MapPropsType} from "./HeaderContainer";
+
+const Header= ({isAuth, login,logOut}:MapPropsType&DispatchPropsType) => {
     const [isActive, setIsActive] = useState(false);
     const onBurger = () => !isActive ? setIsActive(true) : setIsActive(false)
     return <header>

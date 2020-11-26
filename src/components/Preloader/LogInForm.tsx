@@ -4,7 +4,7 @@ import {InjectedFormProps, reduxForm} from "redux-form";
 import {createField, Input} from "./FormControls";
 import {requiredField} from "../../utils/Validator";
 
-const LogInForm: React.FC<InjectedFormProps> = ({handleSubmit, error}) => (
+const LogInForm = ({handleSubmit, error}:InjectedFormProps) => (
     <form onSubmit={handleSubmit} className={s.auth_form}>
         <div className={s.auth_field}>
             <div>
