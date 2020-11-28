@@ -24,12 +24,12 @@ type DispatchPropsType = {
 const App:React.FC<MapPropsType&DispatchPropsType> = ({initializeApp,initialized,isUsers,currentPage,totalUsersCount,pageSize}) => {
   useEffect(() => {
     initializeApp(initialized)
-  }, [initialized]);
+  }, [initializeApp,initialized]);
     return  !initialized ? <Preloader />
       :<div className="app-container">
           <HeaderContainer />
-          <div className="app-container">
-            <div className="app-container">
+          <div className="page-container">
+            <div className="content-container">
               <Route exact path="/" render={()=><Resume/>}/>
               <Route path="/profile/:id?" render={() => <ProfileContainer/>}/>
               <Route path="/dialogs" render={() => <DialogContainer/>}/>
@@ -50,7 +50,7 @@ const  mapStateToProps = (state:AppStateType) =>({
     pageSize: getPageSize(state),
     requestUser: requestUser(state.usersPage.currentPage,state.usersPage.pageSize),
 })
-const Container = compose(withRouter,connect(mapStateToProps, {initializeApp,requestUser}))(App);
+const Container = compose(withRouter,connect(mapStateToProps, {initializeApp,requestUser}))(App) as any;
 
 const MainApp:React.FC = () => <BrowserRouter>
     <Provider store={store}>

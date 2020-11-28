@@ -20,4 +20,4 @@ const mapStateToProps = (state: AppStateType) => ({
 export default compose(
     withRouter,
     connect<MapPropsType,DispatchPropsType,{},AppStateType>(mapStateToProps, { logOut })
-)(HeaderContainer as any);
+)(HeaderContainer) as any;
