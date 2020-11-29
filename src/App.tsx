@@ -27,7 +27,7 @@ const App:React.FC<MapPropsType&DispatchPropsType> = ({initializeApp,initialized
   }, [initializeApp,initialized]);
     return  !initialized ? <Preloader />
       :<div className="app-container">
-          <HeaderContainer />
+          <HeaderContainer/>
           <div className="page-container">
             <div className="content-container">
               <Route exact path="/" render={()=><Resume/>}/>
@@ -38,7 +38,6 @@ const App:React.FC<MapPropsType&DispatchPropsType> = ({initializeApp,initialized
             </div>
           </div>
           {isUsers && <Paginator currentPage={currentPage} requestUser={requestUser} totalItemCount={totalUsersCount} pageSize={pageSize}/>}
-
       </div>
 
 };
@@ -50,7 +49,7 @@ const  mapStateToProps = (state:AppStateType) =>({
     pageSize: getPageSize(state),
     requestUser: requestUser(state.usersPage.currentPage,state.usersPage.pageSize),
 })
-const Container = compose(withRouter,connect(mapStateToProps, {initializeApp,requestUser}))(App) as any;
+const Container = compose<React.ComponentType>(withRouter,connect(mapStateToProps, {initializeApp,requestUser}))(App);
 
 const MainApp:React.FC = () => <BrowserRouter>
     <Provider store={store}>

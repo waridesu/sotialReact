@@ -4,34 +4,36 @@ import DialogMessage from "./DialogMessage/DialogMessage";
 import DialogName from "./DialogName/DialogName";
 import AddMessageFormRedux from "./AddMessageForm";
 import {initialStateType} from "../../redux/dialogReducer";
-type PropsType={
-    dialog: initialStateType
-    resetAddMessage: (text: string)=>void
-}
-export type MessageType ={
-    messageText: string
-}
-const Dialog= ({dialog,resetAddMessage}:PropsType) => {
-  const dialogItem = dialog.companion.map((d) => (
-    <DialogName key={d.id} id={d.id} name={d.name} src={d.src} />
-  ));
-  const messageItem = dialog.messages.map((m, index) => (
-    <DialogMessage key={index} message={m.message} />
-  ));
-  const addingNewMessage=(values:MessageType)=>{
-      resetAddMessage(values.messageText)
-      console.log(values.messageText)
-  }
 
-  return (
-    <div className={s.dialog_container}>
-      <div>{dialogItem}</div>
-      <div className={s.messages}>
-        <div className={s.message_string}>{messageItem}</div>
-        <AddMessageFormRedux onSubmit={addingNewMessage as any} />
-      </div>
-    </div>
-  );
+type PropsType = {
+    dialog: initialStateType
+    sendMessage: (text: string|null) => void
+}
+export type newMessageType = {
+    payload: string|null
+}
+
+const Dialog = ({dialog, sendMessage}: PropsType) => {
+    const dialogItem = dialog.companion.map((d) => (
+        <DialogName key={d.id} id={d.id} name={d.name} src={d.src}/>
+    ));
+    const messageItem = dialog.messages.map((m, index) => (
+        <DialogMessage key={index} message={m.message}/>
+    ));
+    const handleSubmit = (values: newMessageType) => {
+        sendMessage(values.payload)
+        values.payload = null
+    }
+
+    return (
+        <div className={s.dialog_container}>
+            <div>{dialogItem}</div>
+            <div className={s.messages}>
+                <div className={s.message_string}>{messageItem}</div>
+                <AddMessageFormRedux onSubmit={handleSubmit}/>
+            </div>
+        </div>
+    );
 };
 
 export default Dialog;

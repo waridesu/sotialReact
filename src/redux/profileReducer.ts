@@ -1,4 +1,5 @@
 import {usersApi} from "../Api/Api";
+import {BaseThunkType} from "./redux_store";
 
 
 const set_User_Profile = "set_User_Profile";
@@ -36,7 +37,7 @@ export type profileType = {
     photos: photosType
 }
 
-const profileReducer = (state = initialState, action: any): initialStateType => {
+const profileReducer = (state = initialState, action: ActionTypes): initialStateType => {
     switch (action.type) {
         case set_User_Profile: {
             return {...state, profile: action.profile};
@@ -48,6 +49,8 @@ const profileReducer = (state = initialState, action: any): initialStateType => 
             return state;
     }
 };
+type ActionTypes =setUserProfileType|setStatusType
+
 type setUserProfileType = {
     type: typeof set_User_Profile,
     profile: profileType
@@ -64,18 +67,19 @@ export const setStatus = (status: string): setStatusType => ({
     type: set_Status,
     status,
 });
-export const getUserProfile = (id: number) => async (dispatch: any) => {
+type ThunkType=BaseThunkType<ActionTypes>
+export const getUserProfile = (id: number):ThunkType => async (dispatch) => {
     const response = await usersApi.profile(id)
     dispatch(setUserProfile(response.data));
 };
 
 
-export const getUserStatus = (id: number) => async (dispatch: any) => {
+export const getUserStatus = (id: number):ThunkType => async (dispatch) => {
     const response = await usersApi.getStatus(id)
     dispatch(setStatus(response.data));
 };
 
-export const updateStatus = (status:string) => async (dispatch: any) => {
+export const updateStatus = (status:string):ThunkType => async (dispatch) => {
     const response = await usersApi.updateStatus(status);
     if (response.data.resultCode === 0) {
         dispatch(setStatus(status));

@@ -3,15 +3,14 @@ import s from "./Dialog.module.css";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {requiredField, maxLength} from "../../utils/Validator";
 import {Textarea} from "../Preloader/FormControls";
-import {MessageType} from "./Dialog";
+import {newMessageType} from "./Dialog";
 
 const maxLength30= maxLength(30);
-type MassageFormsType = Extract<keyof MessageType, string>
-const AddMessageForm = ({handleSubmit}:InjectedFormProps<MassageFormsType>) => {
+const AddMessageForm = ({handleSubmit}:InjectedFormProps<newMessageType>) => {
     return <form onSubmit={handleSubmit} className={s.send_input}>
         <Field
             component={Textarea}
-            name="messageText"
+            name="payload"
             placeholder="Enter your massage"
             validate={[requiredField, maxLength30]}
         />
@@ -19,7 +18,7 @@ const AddMessageForm = ({handleSubmit}:InjectedFormProps<MassageFormsType>) => {
     </form>
 }
 
-const AddMessageFormRedux = reduxForm<MassageFormsType>({ form: "DialogAddMessage" })(
+const AddMessageFormRedux = reduxForm<newMessageType>({ form: "payload" })(
   AddMessageForm
 );
 

@@ -1,4 +1,4 @@
-import {reset} from "redux-form";
+import {InferActionsTypes} from "./redux_store";
 
 const add_Message = "ADD_MESSAGE";
 
@@ -22,34 +22,25 @@ const initialState = {
     {id: 8, name: "Elijah", src: "https://via.placeholder.com/40"},
   ]as Array<companionType>,
 };
-type messageType = {id: number, message:string}
-type companionType ={id:number,name:string,src:string}
-export  type initialStateType = typeof initialState
-const dialogReducer = (state = initialState, action: any): initialStateType => {
+interface messageType {id: number, message:string|null}
+interface companionType{id:number,name:string,src:string}
+const dialogReducer = (state = initialState, action: ActionsType): initialStateType => {
   switch (action.type) {
-    case add_Message: {
-      return {
-        ...state,
-        messages: [
-          ...state.messages,
-          {id: 7, message: action.newMessageText},
-        ],
-      };
-    }
+    case add_Message:
+      let text = action.payload
+      return {...state,
+        messages: [...state.messages,{id:9, message: text}],
+      }
     default:
       return state;
   }
 };
-type  addMessageType= {
-  type: typeof add_Message
-  newMessageText:string
+export const actions={
+  sendMessage:(payload:string|null)=>({type:add_Message, payload}as const),
 }
-export const addMessage = (newMessageText: string):addMessageType => ({
-  type: add_Message,
-  newMessageText,
-});
-export const resetAddMessage = (newMessageText: string) => (dispatch: any) => {
-  dispatch(addMessage(newMessageText));
-  dispatch(reset('DialogAddMessage'));
-}
+export type initialStateType = typeof initialState
+type ActionsType = InferActionsTypes<typeof actions>
+
+
+
 export default dialogReducer;
