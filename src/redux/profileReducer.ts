@@ -64,18 +64,18 @@ export const actions={
 type ThunkType=BaseThunkType<ActionTypes>
 export const getUserProfile = (id: number):ThunkType => async (dispatch) => {
     const response = await usersApi.profile(id)
-    dispatch(actions.setUserProfile(response.data));
+    dispatch(actions.setUserProfile(response));
 };
 
 
 export const getUserStatus = (id: number):ThunkType => async (dispatch) => {
     const response = await usersApi.getStatus(id)
-    dispatch(actions.setStatus(response.data));
+    dispatch(actions.setStatus(response));
 };
 
 export const updateStatus = (status:string):ThunkType => async (dispatch) => {
     const response = await usersApi.updateStatus(status);
-    if (response.data.resultCode === 0) {
+    if (response.resultCode === 0) {
         dispatch(actions.setStatus(status));
     }
 

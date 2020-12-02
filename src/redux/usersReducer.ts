@@ -1,4 +1,4 @@
-import {usersApi} from "../Api/Api";
+import {responseType, usersApi} from "../Api/Api";
 import {updateObjectArray} from "../utils/objactsHelpers";
 import {photosType} from "./profileReducer";
 import {BaseThunkType, InferActionsTypes} from "./redux_store";
@@ -101,10 +101,10 @@ export const requestUser =
         };
 
 const _resetFlow =
-    async (dispatch: Dispatch<ActionTypes>, id: number, apiMethod: any, actionCreator: (id: number) => ActionTypes) => {
+    async (dispatch: Dispatch<ActionTypes>, id: number, apiMethod: (userId:number)=>Promise<responseType>, actionCreator: (id: number) => ActionTypes) => {
         dispatch(actions.setToggleFollowing(true, id));
         let response = await apiMethod(id)
-        if (response.data.resultCode === 0) {
+        if (response.resultCode === 0) {
             dispatch(actionCreator(id));
             dispatch(actions.setToggleFollowing(false, id));
         }

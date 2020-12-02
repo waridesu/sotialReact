@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./FormControls.module.css";
 import {Field, WrappedFieldMetaProps, WrappedFieldProps} from "redux-form";
+import {validFieldType} from "../../utils/Validator";
 type FormControlPropsType ={
     meta: WrappedFieldMetaProps
 }
@@ -31,7 +32,7 @@ export const Input: React.FC<WrappedFieldProps> = (props) => {
     </FormControl>
   );
 };
-export function createField<FormKeysType extends string>(placeholder: string|undefined,name: FormKeysType, components:React.FC<WrappedFieldProps>, valid:Array<any>, type?:string)
+export function createField<FormKeysType extends string>(placeholder: string|undefined,name: FormKeysType, components:React.FC<WrappedFieldProps>, valid:Array<validFieldType>, type?:string)
 {return<Field
         placeholder={placeholder}
         name={name}
