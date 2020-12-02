@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {
     requestUser,
     follow,
-    unfollow, SetIsUsersCase,
+    unfollow, actions,
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
@@ -21,10 +21,10 @@ type MapDispatchPropsType = {
 
 const UsersContainer = ({requestUser, pageSize, SetIsUsersCase, currentPage, isFetching, users, followingInProgress, follow, unfollow}: StatePropsType&MapDispatchPropsType) => {
     useEffect(() => {
-        SetIsUsersCase(true)
+        actions.SetIsUsersCase(true)
         requestUser(currentPage, pageSize);
         return () => {
-            SetIsUsersCase(false)
+            actions.SetIsUsersCase(false)
         }
     }, [requestUser, currentPage, pageSize, SetIsUsersCase])
     return (
@@ -58,6 +58,4 @@ export default connect<StatePropsType, MapDispatchPropsType, {}, AppStateType>
 (mapStateToProps, {
     follow,
     unfollow,
-    requestUser,
-    SetIsUsersCase,
-})(UsersContainer);
+    requestUser,...actions})(UsersContainer);

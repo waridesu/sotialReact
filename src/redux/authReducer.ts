@@ -1,5 +1,6 @@
 import {usersApi} from "../Api/Api";
-import {stopSubmit} from "redux-form";
+import {FormAction, stopSubmit} from "redux-form";
+import {BaseThunkType, InferActionsTypes} from "./redux_store";
 
 const set_Auth_Data = "set_Auth_Data";
 type initialStateType = typeof initialState
@@ -10,7 +11,7 @@ const initialState = {
   isAuth: false,
 };
 
-const AuthReducer = (state = initialState, action: any): initialStateType => {
+const AuthReducer = (state = initialState, action: ActionsType): initialStateType => {
   switch (action.type) {
     case set_Auth_Data:
       return {
@@ -20,31 +21,26 @@ const AuthReducer = (state = initialState, action: any): initialStateType => {
     default: return state;
   }
 };
+type ThunkType = BaseThunkType<ActionsType|FormAction>
+type ActionsType = InferActionsTypes<typeof actions>
 
-export type setAuthUserActionPayloadType = {
-  id:number | null,
-  email:string | null,
-  login:string | null,
-  isAuth:boolean
+export const actions={
+  setAuthData : (id: number | null, email: string | null, login: string | null, isAuth: boolean)=> ({
+    type: set_Auth_Data,
+    payload: {id, email, login, isAuth},
+  } as const)
 }
-type setAuthDataActionType = {
-  type: typeof set_Auth_Data,
-  payload: setAuthUserActionPayloadType
-}
-export const setAuthData = (id: number | null, email: string | null, login: string | null, isAuth: boolean):setAuthDataActionType => ({
-  type: set_Auth_Data,
-  payload: {id, email, login, isAuth},
-});
-export const getAuthData = () => async (dispatch:any) => {
+
+export const getAuthData = ():ThunkType => async (dispatch) => {
   const response = await usersApi.authMe()
   if (response.data.resultCode === 0) {
     let {id, email, login} = response.data.data;
-    dispatch(setAuthData(id, email, login, true));
+    dispatch(actions.setAuthData(id, email, login, true));
   }
 }
 
 
-export const logIn = (email: string, password: string, rememberMe: boolean) => async (dispatch:any) => {
+export const logIn = (email: string, password: string, rememberMe: boolean):ThunkType => async (dispatch) => {
   const response = await usersApi.logMe(email, password, rememberMe)
   if (response.data.resultCode === 0) {
     dispatch(getAuthData());
@@ -53,18 +49,14 @@ export const logIn = (email: string, password: string, rememberMe: boolean) => a
         response.data.messages.length > 0
             ? response.data.messages
             : "Some error";
-    dispatch(
-        stopSubmit("LogIn", {
-            _error: message,
-          })
-      );
+    dispatch(stopSubmit('LogIn', {_error: message}));
     }
 };
 
-export const logOut = () => async (dispatch:any) => {
+export const logOut = ():ThunkType => async (dispatch) => {
     const  response = await usersApi.unLogMe();
       if (response.data.resultCode === 0) {
-        dispatch(setAuthData(null, null, null, false));
+        dispatch(actions.setAuthData(null, null, null, false));
       }
 
 };

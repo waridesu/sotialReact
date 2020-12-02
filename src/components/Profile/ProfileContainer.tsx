@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {
     getUserProfile,
-    getUserStatus, profileType, setUserProfile,
+    getUserStatus, profileType, actions,
     updateStatus,
 } from "../../redux/profileReducer";
 import Profile from "./Profile";
@@ -62,7 +62,7 @@ export default compose<React.ComponentType>(
         {
             getUserProfile,
             getUserStatus,
-            setUserProfile,
+            ...actions,
             updateStatus
         }),
     withRouter

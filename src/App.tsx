@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect}from "react";
 import "./App.css";
 import Resume from "./components/Profile/Resume";
 import DialogContainer from "./components/Dialogs/Dialog_Container";

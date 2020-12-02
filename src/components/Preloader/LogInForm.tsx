@@ -8,8 +8,8 @@ const LogInForm = ({handleSubmit, error}:InjectedFormProps) => (
     <form onSubmit={handleSubmit} className={s.auth_form}>
         <div className={s.auth_field}>
             <div>
-                {createField("email", "email", Input, [requiredField])}
-                {createField("Password", "password", Input, [requiredField], "password")}
+                {createField("waridesu@gmail.com", "email", Input, [requiredField])}
+                {createField("password", "password", Input, [requiredField], "password")}
                 {error && <div className={s.sumError}>{error}</div>}
             </div>
         </div>
@@ -18,8 +18,6 @@ const LogInForm = ({handleSubmit, error}:InjectedFormProps) => (
             remember
         </label>
         <button>login</button>
-        <p>Логин: <b>waridesu@gmail.com</b></p>
-        <p>Пароль: <b>password</b></p>
     </form>
 );
 
