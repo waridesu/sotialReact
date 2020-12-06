@@ -7,7 +7,7 @@ import Header from "./Header";
 import {AppStateType} from "../../redux/redux_store";
 
 export type MapPropsType = ReturnType<typeof mapStateToProps>
-export type DispatchPropsType = {
+export interface DispatchPropsType {
     logOut: () => void
 }
 const HeaderContainer: React.FC<MapPropsType & DispatchPropsType & {} & AppStateType> =

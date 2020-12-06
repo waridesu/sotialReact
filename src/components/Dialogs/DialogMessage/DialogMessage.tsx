@@ -1,5 +1,5 @@
 import React from "react";
-type PropsType={
+interface PropsType{
     message:string|null
 }
 const DialogMessage = ({message}:PropsType) => <p>{message}</p>;

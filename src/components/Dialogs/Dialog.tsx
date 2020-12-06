@@ -5,11 +5,11 @@ import DialogName from "./DialogName/DialogName";
 import AddMessageFormRedux from "./AddMessageForm";
 import {initialStateType} from "../../redux/dialogReducer";
 
-type PropsType = {
+interface PropsType {
     dialog: initialStateType
     sendMessage: (text: string|null) => void
 }
-export type newMessageType = {
+export interface newMessageType {
     payload: string|null
 }
 

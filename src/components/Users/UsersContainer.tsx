@@ -12,7 +12,7 @@ import {AppStateType} from "../../redux/redux_store";
 
 type StatePropsType = ReturnType<typeof mapStateToProps>
 
-type MapDispatchPropsType = {
+interface MapDispatchPropsType {
     follow: (id: number) => void
     unfollow: (id: number) => void
     requestUser: (currentPage: number, pageSize: number) => void

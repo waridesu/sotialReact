@@ -2,10 +2,6 @@ import {usersApi} from "../Api/Api";
 import {BaseThunkType, InferActionsTypes} from "./redux_store";
 
 
-const set_User_Profile = "set_User_Profile";
-const set_Status = "set_Status";
-//const on_Status_Change = "on_Status_Change";
-
 const initialState = {
     profile: null as profileType | null,
     status: undefined as string | undefined
@@ -39,10 +35,10 @@ export type profileType = {
 
 const profileReducer = (state = initialState, action: ActionTypes): initialStateType => {
     switch (action.type) {
-        case set_User_Profile: {
+        case 'set_User_Profile': {
             return {...state, profile: action.profile};
         }
-        case set_Status: {
+        case 'set_Status': {
             return {...state, status: action.status};
         }
         default:
@@ -52,11 +48,11 @@ const profileReducer = (state = initialState, action: ActionTypes): initialState
 type ActionTypes =InferActionsTypes<typeof actions>
 export const actions={
     setUserProfile : (profile: profileType)=> ({
-        type: set_User_Profile,
+        type: 'set_User_Profile',
         profile,
     }as const),
     setStatus : (status: string)=> ({
-        type: set_Status,
+        type: 'set_Status',
         status,
     }as const)
 }

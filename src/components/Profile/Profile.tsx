@@ -1,7 +1,7 @@
 import React from "react";
 import ProfileStatusWithHooks from "./ProfileStatus";
 import {profileType} from "../../redux/profileReducer";
-type PropsType = {
+interface PropsType {
     profile: profileType
     status: string | undefined
     updateStatus: (status:string| undefined)=>void

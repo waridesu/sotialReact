@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './../Dialog.module.css';
 import { NavLink } from 'react-router-dom'
-type PropsType={
+interface PropsType{
     src:string
     id:number
     name: string

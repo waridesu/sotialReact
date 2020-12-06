@@ -14,13 +14,13 @@ import {AppStateType} from "../../redux/redux_store";
 
 type MapPropsType = ReturnType<typeof mapStateToProps>
 
-type MapDispatchPropsType = {
+interface MapDispatchPropsType {
     getUserProfile: (id: number | null) => void
     getUserStatus: (id: number | null) => void
     setUserProfile: (profile:profileType|null) => void
     updateStatus: (status: string| undefined) => void
 }
-type PathParamsType = {
+interface PathParamsType {
     id: string
 }
 type PropsType = MapPropsType & MapDispatchPropsType & RouteComponentProps<PathParamsType>

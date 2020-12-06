@@ -5,12 +5,21 @@ import { logIn, logOut } from "../../redux/authReducer";
 import { Redirect } from "react-router-dom";
 import {AppStateType} from "../../redux/redux_store";
 
-
-const AuthDirect = (props:any) => {
-  const onSubmit = (formData:any) => {
-    props.LogIn(formData.email, formData.password, formData.rememberMe);
+type stateToProps= ReturnType<typeof mapStateToProps>
+interface mapDispatchToProps {
+  logIn:(email: string, password: string, rememberMe: boolean)=>void
+}
+export interface loginFormValuesType{
+  email: string
+  password: string
+  rememberMe: boolean
+}
+export type loginFormValuesTypeKeys = Extract<keyof loginFormValuesType, string>
+const AuthDirect = ({isAuth, logIn}:stateToProps&mapDispatchToProps) => {
+  const onSubmit = (formData:loginFormValuesType) => {
+    logIn(formData.email, formData.password, formData.rememberMe);
   };
-  if (props.isAuth) {
+  if (isAuth) {
     return <Redirect to="/profile" />;
   }
   return <LogInReduxForm onSubmit={onSubmit} />;
@@ -20,4 +29,4 @@ const mapStateToProps = (state: AppStateType) => ({
 isAuth: state.auth.isAuth
 });
 
-export default connect(mapStateToProps, { LogIn: logIn, LogOut: logOut })(AuthDirect);
+export default connect(mapStateToProps, { logIn, logOut })(AuthDirect);

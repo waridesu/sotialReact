@@ -2,7 +2,6 @@ import {ResultCodesEnum, usersApi} from "../Api/Api";
 import {FormAction, stopSubmit} from "redux-form";
 import {BaseThunkType, InferActionsTypes} from "./redux_store";
 
-const set_Auth_Data = "set_Auth_Data";
 type initialStateType = typeof initialState
 const initialState = {
   id: null as number|null,
@@ -13,7 +12,7 @@ const initialState = {
 
 const AuthReducer = (state = initialState, action: ActionsType): initialStateType => {
   switch (action.type) {
-    case set_Auth_Data:
+    case 'set_Auth_Data':
       return {
         ...state,
         ...action.payload,
@@ -26,7 +25,7 @@ type ActionsType = InferActionsTypes<typeof actions>
 
 export const actions={
   setAuthData : (id: number | null, email: string | null, login: string | null, isAuth: boolean)=> ({
-    type: set_Auth_Data,
+    type: 'set_Auth_Data',
     payload: {id, email, login, isAuth},
   } as const)
 }

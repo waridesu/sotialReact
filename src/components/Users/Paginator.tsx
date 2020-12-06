@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import s from "./Users.module.css";
 import cn from "classnames"
 
-type propsType = {
+interface propsType {
     totalItemCount: number
     pageSize: number
     currentPage: number

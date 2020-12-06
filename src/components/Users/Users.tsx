@@ -3,7 +3,7 @@ import s from "./Users.module.css";
 import {Link} from "react-router-dom";
 import {usersType} from "../../redux/usersReducer";
 
-type propsType ={
+interface propsType {
     users: Array<usersType>
     followingInProgress: Array<number>
     unfollow: (id:number)=>void

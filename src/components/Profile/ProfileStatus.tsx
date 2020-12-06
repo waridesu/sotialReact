@@ -1,5 +1,5 @@
 import React, {useState, useEffect, ChangeEvent} from "react";
-type PropsType ={
+interface PropsType {
   status: string | undefined
   updateStatus: (status:string|undefined)=>void
 }
